@@ -140,12 +140,26 @@ export async function initMapRoom({ container, dataUrl }) {
   const detail = el("div", { class: "detail-panel node-detail", role: "region",
     "aria-live": "polite", "aria-label": "Selected place" });
 
+  // A place can point at more than one room, so name the destination. Repeating
+  // "See the objects" would give a reader two identical links to choose between.
+  const LINK_LABELS = {
+    "ceramics.html": "See the ceramics →",
+    "dunhuang.html": "See the Buddhist art →",
+    "poetry.html": "Read the poetry →",
+  };
+
+  function linkLabel(href) {
+    const [page, anchor] = href.split("#");
+    const base = LINK_LABELS[page] ?? "See the objects →";
+    return anchor ? base.replace(" →", ": this object →") : base;
+  }
+
   function showNode(node) {
     detail.replaceChildren(
       el("h3", { text: node.name }),
       el("p", { text: node.body }),
       ...(node.seeAlso ?? []).map((href) =>
-        el("p", {}, [el("a", { href, text: "See the objects →" })])
+        el("p", {}, [el("a", { href, text: linkLabel(href) })])
       )
     );
   }
