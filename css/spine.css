@@ -1,0 +1,45 @@
+.skip {
+  position: absolute; left: var(--space-s); top: var(--space-s);
+  background: var(--paper-raised); padding: var(--space-2xs) var(--space-s);
+  transform: translateY(-200%);
+}
+.skip:focus { transform: none; }
+
+.spine-hero { padding-block: var(--space-2xl) var(--space-l); }
+.spine-hero h1 { font-size: clamp(4rem, 12vw, 9rem); letter-spacing: -0.02em; }
+.spine-dates {
+  font-family: var(--font-sans); color: var(--muted);
+  letter-spacing: 0.25em; margin-block: var(--space-2xs) var(--space-m);
+}
+
+.room-index { padding-block: var(--space-l); border-block: 1px solid var(--rule); }
+.room-index ul { list-style: none; padding: 0; }
+.room-index li + li { margin-block-start: var(--space-xs); }
+.room-index a { font-size: var(--size-step-1); }
+
+.era-section { padding-block: var(--space-2xl); border-block-end: 1px solid var(--rule); }
+.section-year {
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  letter-spacing: 0.2em; color: var(--accent); margin-block-end: var(--space-2xs);
+}
+
+/* The rupture is the one place both registers are visible at once. */
+.era-section.rupture {
+  background:
+    linear-gradient(to bottom, var(--paper-raised), var(--paper));
+  border-block-start: 3px solid var(--accent);
+}
+
+#year-indicator {
+  position: fixed; inset-block-start: var(--space-s); inset-inline-end: var(--space-s);
+  font-family: var(--font-sans); font-size: var(--size-step-1);
+  color: var(--muted); background: var(--paper-raised);
+  padding: var(--space-3xs) var(--space-2xs); border: 1px solid var(--rule);
+  z-index: 10;
+  transition: color var(--era-transition);
+}
+
+.spine-footer {
+  padding-block: var(--space-l);
+  font-family: var(--font-sans); font-size: var(--size-step--1); color: var(--muted);
+}

@@ -1,0 +1,27 @@
+.layer-toggles {
+  border: 1px solid var(--rule); padding: var(--space-2xs) var(--space-s);
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  display: flex; flex-wrap: wrap; gap: var(--space-s); align-items: center;
+  margin-block-end: var(--space-s);
+}
+.layer-toggles legend { padding-inline: var(--space-2xs); }
+.layer-toggle { display: inline-flex; align-items: center; gap: var(--space-3xs); }
+
+.route-map {
+  width: 100%; height: auto; background: var(--paper-raised);
+  border: 1px solid var(--rule);
+}
+.edge { stroke: var(--rule); stroke-width: 2; }
+.node-dot { fill: var(--accent); }
+.node-label {
+  fill: var(--ink); font-family: var(--font-sans); font-size: 18px;
+}
+.node { cursor: pointer; }
+.node:focus-visible { outline: 3px solid var(--accent-3); outline-offset: 2px; }
+.node.is-dimmed { opacity: 0.25; pointer-events: none; }
+
+.map-note {
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  color: var(--muted); margin-block: var(--space-2xs) var(--space-s);
+}
+.node-detail { margin-block-end: var(--space-l); }
