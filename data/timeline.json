@@ -18,14 +18,21 @@
     "era": "high",
     "title": "Wu Zetian",
     "body": "Wu Zetian ruled in her own name as emperor, the only woman in Chinese history to do so, and used monumental Buddhist patronage as an instrument of legitimacy. The colossal sculptures at Longmen belong to this program. Ceramic figures grow fuller, more confident, and more theatrical in the same decades.",
-    "objects": []
+    "objects": [
+      "tang-bodhisattva"
+    ]
   },
   {
     "year": 713,
     "era": "high",
     "title": "The Xuanzong court",
     "body": "The first decades of Xuanzong's long reign are the period later writers meant by the Tang golden age. Sancai glazing reaches its most ambitious scale, tomb assemblages become crowded portrait galleries of camels, grooms, horses, and foreign merchants, and the court sustains an unmatched concentration of poets and musicians. The confidence is legible in the objects: they are made to be looked at.",
-    "objects": []
+    "objects": [
+      "sancai-ewer",
+      "sancai-horse",
+      "sancai-camel",
+      "foreign-groom"
+    ]
   },
   {
     "year": 755,
@@ -39,7 +46,11 @@
     "era": "late",
     "title": "After the war",
     "body": "The late Tang state governed a smaller effective territory through negotiated accommodation with regional military governors. Patronage moved outward from the capital and downward in scale. Ceramics turn toward monochrome refinement — Yue celadon, Xing white ware — and away from polychrome display, a shift that leads directly to Song taste.",
-    "objects": []
+    "objects": [
+      "yue-celadon",
+      "celadon-bottle",
+      "dunhuang-mural"
+    ]
   },
   {
     "year": 907,

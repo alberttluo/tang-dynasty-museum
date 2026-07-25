@@ -164,6 +164,26 @@ class CheckCrosslinks(unittest.TestCase):
         problems = check_crosslinks(objects, {"nodes": []}, timeline, self.root)
         self.assertTrue(any("nonexistent" in p for p in problems))
 
+    def test_map_node_anchor_is_valid_on_changan_page(self):
+        (self.root / "rooms" / "changan.html").write_text("<html></html>", encoding="utf-8")
+        objects = [{"id": "jar", "hotspots": [{"seeAlso": ["changan.html#samarkand"]}]}]
+        routes = {"nodes": [{"id": "samarkand"}]}
+        self.assertEqual(check_crosslinks(objects, routes, [], self.root), [])
+
+    def test_unknown_map_node_anchor_is_reported(self):
+        (self.root / "rooms" / "changan.html").write_text("<html></html>", encoding="utf-8")
+        objects = [{"id": "jar", "hotspots": [{"seeAlso": ["changan.html#atlantis"]}]}]
+        routes = {"nodes": [{"id": "samarkand"}]}
+        problems = check_crosslinks(objects, routes, [], self.root)
+        self.assertTrue(any("map node id" in p for p in problems))
+
+    def test_object_id_is_not_accepted_as_a_map_anchor(self):
+        (self.root / "rooms" / "changan.html").write_text("<html></html>", encoding="utf-8")
+        objects = [{"id": "jar", "hotspots": [{"seeAlso": ["changan.html#jar"]}]}]
+        routes = {"nodes": [{"id": "samarkand"}]}
+        problems = check_crosslinks(objects, routes, [], self.root)
+        self.assertTrue(any("map node id" in p for p in problems))
+
 
 if __name__ == "__main__":
     unittest.main()

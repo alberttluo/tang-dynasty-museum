@@ -60,6 +60,9 @@ function buildMap(data, onSelect) {
   const nodeButtons = [];
   for (const node of data.nodes) {
     const group = svg("g", {
+      // The id makes each place a real link target, so an object's hotspot can
+      // point at changan.html#samarkand and land somewhere meaningful.
+      id: node.id,
       class: "node",
       "data-layers": node.layers.join(" "),
       transform: `translate(${node.x} ${node.y})`,
@@ -178,6 +181,20 @@ export async function initMapRoom({ container, dataUrl }) {
     )
   );
 
-  showNode(data.nodes.find((node) => node.id === "changan") ?? data.nodes[0]);
+  // Arriving from another room's cross-link (changan.html#samarkand) should
+  // select that place, not merely scroll near its dot. Falls back to Chang'an,
+  // where everything on the map converges.
+  function selectFromHash() {
+    const wanted = decodeURIComponent(location.hash.replace("#", ""));
+    const node =
+      data.nodes.find((candidate) => candidate.id === wanted) ??
+      data.nodes.find((candidate) => candidate.id === "changan") ??
+      data.nodes[0];
+    showNode(node);
+    return node;
+  }
+
+  selectFromHash();
+  window.addEventListener("hashchange", selectFromHash);
   applyLayers();
 }

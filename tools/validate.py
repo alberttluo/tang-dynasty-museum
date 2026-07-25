@@ -184,18 +184,30 @@ def check_poems(records):
 def check_crosslinks(objects, routes, timeline, repo_root):
     """Verify every seeAlso target resolves to a real page and anchor.
 
-    Anchors correspond to object ids, which js/zoom.js sets as each figure's
-    id. A link like 'ceramics.html#jar' is valid iff object 'jar' exists.
+    Valid anchors depend on the page being linked to, and each set matches what
+    the corresponding module actually puts in the DOM:
+      * changan.html -- map node ids, set as the <g> id by js/map.js
+      * every other room -- object ids, set as the <figure> id by js/zoom.js
+    Checking per page rather than against one merged set means an object id used
+    as a map anchor (or the reverse) is still caught.
     """
     problems = []
     object_ids = {record.get("id") for record in objects}
+    node_ids = {node.get("id") for node in (routes.get("nodes") or [])}
 
     def check_link(link, where):
         page, _, anchor = link.partition("#")
         if page and not (repo_root / "rooms" / page).is_file():
             problems.append(f"{where}: link target page not found: {page}")
             return
-        if anchor and anchor not in object_ids:
+        if not anchor:
+            return
+        if page == "changan.html":
+            if anchor not in node_ids:
+                problems.append(
+                    f"{where}: link anchor #{anchor} matches no map node id"
+                )
+        elif anchor not in object_ids:
             problems.append(f"{where}: link anchor #{anchor} matches no object id")
 
     for record in objects:
