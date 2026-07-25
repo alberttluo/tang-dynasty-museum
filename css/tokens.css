@@ -1,6 +1,11 @@
 :root {
   /* Type scale */
-  --font-serif: "Noto Serif SC", "Songti SC", "SimSun", Georgia, serif;
+  /* Latin faces come FIRST and the CJK faces sit behind them. Browsers fall
+     back per glyph, so Latin text resolves to Georgia while Chinese characters
+     drop through to a CJK serif. Putting SimSun first instead makes every
+     Latin letter render in its poor fixed-width Latin glyphs. */
+  --font-serif: Georgia, "Iowan Old Style", "Palatino Linotype", "Noto Serif SC",
+    "Songti SC", "SimSun", serif;
   --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --size-step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
   --size-step-0: clamp(1rem, 0.96rem + 0.2vw, 1.12rem);
