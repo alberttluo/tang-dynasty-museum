@@ -1,0 +1,31 @@
+.zoom-controls { display: flex; gap: var(--space-2xs); margin-block-end: var(--space-2xs); }
+.zoom-controls button {
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  padding: var(--space-3xs) var(--space-2xs);
+  background: var(--paper-raised); color: var(--ink);
+  border: 1px solid var(--rule); cursor: pointer;
+}
+
+.zoom-viewport {
+  position: relative; overflow: hidden;
+  background: var(--paper-raised); border: 1px solid var(--rule);
+  touch-action: none; cursor: grab;
+  max-height: 80vh;
+}
+.zoom-viewport.is-grabbing { cursor: grabbing; }
+
+.zoom-stage { position: relative; transform-origin: center center; }
+.zoom-stage img { width: 100%; height: auto; }
+
+.hotspot {
+  position: absolute; translate: -50% -50%;
+  width: 2rem; height: 2rem; border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 70%, transparent);
+  border: 2px solid var(--paper-raised);
+  cursor: pointer;
+}
+.hotspot:hover { background: var(--accent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .zoom-stage { transition: none !important; }
+}

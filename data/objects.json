@@ -1,0 +1,360 @@
+[
+  {
+    "id": "sancai-horse",
+    "room": "ceramics",
+    "title": "Caparisoned horse with sancai glaze",
+    "date": "675–750 AD",
+    "museum": {
+      "name": "Portland Art Museum",
+      "accession": "not recorded by source",
+      "license": "Public domain"
+    },
+    "image": {
+      "src": "../assets/img/sancai-horse.jpg",
+      "aspect": "1400/997"
+    },
+    "summary": "An earthenware horse from Shaanxi or Henan province, standing on its original luted slab, harnessed and saddled and glazed in streaming amber, green, and cream. This is the type of object the Xuanzong decades are known by: large, expensive, made to be looked at in a tomb chamber, and effectively absent from the archaeological record after the middle of the eighth century.",
+    "hotspots": [
+      {
+        "x": 0.21,
+        "y": 0.22,
+        "label": "Bridle picked out in green",
+        "body": "The straps of the bridle stand slightly proud of the head and carry green glaze while the cheek is amber. Raised lines hold a different glaze from the surface beside them because glaze runs off a ridge and gathers in a channel — the potter used the modelling to keep the colours apart instead of trying to paint a hard edge.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.37,
+        "y": 0.19,
+        "label": "Hogged mane, combed while wet",
+        "body": "The mane is cropped into an upright ridge and scored with close parallel grooves, cut into the clay with a toothed tool before firing. Hogging a horse's mane was real Tang stable practice for animals in harness, so the sculptural convention is reporting something about how these horses were kept.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.51,
+        "y": 0.38,
+        "label": "Saddle left almost bare",
+        "body": "The saddle and its cloth are pale and thinly glazed against the deep amber of the barrel. Leaving the highest, most projecting element of the composition light keeps it legible from across a room, and it also spares the potter the risk of thick glaze running off a sharp edge and puddling on the flank below.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.71,
+        "y": 0.42,
+        "label": "Applied rosettes on the crupper strap",
+        "body": "Small green florets were pressed from a mould and stuck onto the harness strap across the hindquarters. They imitate the metal bosses of real Tang tack. Because they sit on top of the surface, glaze has run down from each one in a short vertical tail — a reliable clue that an element was applied rather than modelled from the body clay.",
+        "seeAlso": []
+      }
+    ]
+  },
+  {
+    "id": "sancai-ewer",
+    "room": "ceramics",
+    "title": "Sancai ewer with dragon-head handle",
+    "date": "Tang dynasty (618–907); precise date not recorded by source",
+    "museum": {
+      "name": "Cleveland Museum of Art",
+      "accession": "1987.148",
+      "license": "CC0"
+    },
+    "image": {
+      "src": "../assets/img/sancai-ewer.jpg",
+      "aspect": "1400/1571"
+    },
+    "summary": "A wheel-thrown ewer on a splayed foot, banded from shoulder to base in amber, green, and cream glaze, with a modelled animal-head handle looped from rim to shoulder. It is a useful first object because almost everything sancai does is visible on one surface: the horizontal throwing rings, the glaze bands laid over them, and the vertical runs where those bands failed to stay put in the kiln.",
+    "hotspots": [
+      {
+        "x": 0.49,
+        "y": 0.17,
+        "label": "Lobed, trefoil mouth",
+        "body": "The rim was pinched out into lobes after throwing rather than left as a plain circle. Flared and cusped mouths like this belong to a family of Tang vessel shapes that follow Sasanian and Central Asian metalwork; the potter is reproducing in earthenware a profile that was first worked in beaten silver.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.29,
+        "y": 0.2,
+        "label": "Animal-head handle, applied not thrown",
+        "body": "The handle was modelled separately and luted onto the leather-hard body, its upper end finished as a beast's head biting the rim. Applied elements like this shrink at a slightly different rate from the thrown wall as they dry, which is why Tang handles so often show a hairline crack or a lifted edge at the join.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.48,
+        "y": 0.6,
+        "label": "Glaze that ran, and where it stopped",
+        "body": "Sancai glazes are fluxed with lead, which makes them melt at a low temperature and flow freely while molten. The green and amber bands here have bled downward into the cream in vertical tongues, thinning over each raised ridge and pooling darker in the hollow below it. The pattern is not painted; it is a record of gravity acting for the length of one firing.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.48,
+        "y": 0.91,
+        "label": "Unglazed foot",
+        "body": "The glaze runs down the pedestal and stops short of the bottom edge, leaving raw buff earthenware at the foot ring. This was deliberate: a lead glaze that reached the base would have fused the pot to whatever it stood on, so the potter left a dry margin to give the piece a clean release from the kiln floor.",
+        "seeAlso": []
+      }
+    ]
+  },
+  {
+    "id": "sancai-camel",
+    "room": "ceramics",
+    "title": "Sancai camel with rider",
+    "date": "Tang dynasty (618–907); precise date not recorded by source",
+    "museum": {
+      "name": "Institution not recorded by source (Wikimedia Commons file: Tang Sancai Camel.jpg)",
+      "accession": "not recorded by source",
+      "license": "CC0"
+    },
+    "image": {
+      "src": "../assets/img/sancai-camel.jpg",
+      "aspect": "1400/933"
+    },
+    "summary": "A Bactrian camel kneeling with a rider astride the saddle pack, its body under a running amber glaze while the shaggy hair of neck and forelegs is left in pale unglazed clay. Camels are among the most common large figures in high-Tang tomb assemblages, which is itself the historical point: the overland caravan trade was familiar enough to furnish the imagery of the afterlife.",
+    "hotspots": [
+      {
+        "x": 0.29,
+        "y": 0.21,
+        "label": "Two clays, one figure",
+        "body": "The head and hump hair are pale and matte while the flanks are glossy amber. The maker glazed selectively, leaving the roughly combed hair unglazed so that its texture would read as fur rather than disappear under a flowing coat of lead glaze. Selective glazing is a design decision, not an accident of coverage.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.56,
+        "y": 0.24,
+        "label": "The rider, modelled by hand",
+        "body": "The rider was made separately from the camel and set into the load. His cap, tunic, and face are modelled freehand rather than pressed from the same mould as the animal, which is why the two parts differ so much in finish. Riders, grooms, and camel drivers were produced as interchangeable parts of a tomb set.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.55,
+        "y": 0.55,
+        "label": "Dappled saddle cloth",
+        "body": "The saddle blanket carries a deliberate spotted pattern in green and amber over cream, produced by dabbing glaze in blots and letting the edges bleed during firing. Compare it with the smooth amber of the body: the same glaze system gives a flat coat or a dappled one depending only on how thickly and how patchily it is applied.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.29,
+        "y": 0.83,
+        "label": "Kneeling pose, and why it helps",
+        "body": "A couched camel with folded legs is far more robust than a standing one, since the whole mass rests on a broad base rather than four thin earthenware supports. Standing camels and horses of this size regularly survive with repaired legs; the kneeling pose sidesteps the weakest point in the form.",
+        "seeAlso": []
+      }
+    ]
+  },
+  {
+    "id": "foreign-groom",
+    "room": "ceramics",
+    "title": "Figure of a Groom",
+    "date": "Late 7th–first half of 8th century",
+    "museum": {
+      "name": "The Metropolitan Museum of Art",
+      "accession": "not recorded by source",
+      "license": "Public domain"
+    },
+    "image": {
+      "src": "../assets/img/foreign-groom.jpg",
+      "aspect": "358/791"
+    },
+    "summary": "An unglazed earthenware groom, standing on a modelled plinth with one fist raised as though holding a rein, dressed in a belted robe pulled open across the belly and wearing a soft folded cap. The source records it only as a groom; nothing in the record identifies the individual or his origin, so what can be read here is the workshop's technique and the role, not a biography.",
+    "hotspots": [
+      {
+        "x": 0.62,
+        "y": 0.09,
+        "label": "Folded cap",
+        "body": "The cap is built from soft folded forms with a knot rising at the crown, modelled freehand rather than pressed. Headgear is the element Tang tomb figures individualise most, because it was the fastest way for a workshop to distinguish one figure from the next in a set that shared body moulds.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.45,
+        "y": 0.32,
+        "label": "Raised fist for a missing rein",
+        "body": "The hand is closed around a hole that once held something now gone — a rein, staff, or bridle in wood or leather that decayed. Grooms in Tang tomb assemblages are made to be grouped with a horse or camel, and the empty fist is the join between two objects that were meant to stand together.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.56,
+        "y": 0.44,
+        "label": "Painted, not glazed",
+        "body": "This figure carries no glaze at all: the surface is fired buff earthenware that was finished with cold pigment after firing, and faint patches of colour survive in the sheltered folds. Painted figures were the cheaper alternative to sancai in the same workshops, and the pigment is what usually vanishes, leaving the pale figure a modern viewer sees.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.54,
+        "y": 0.87,
+        "label": "Integral plinth",
+        "body": "The figure stands on a flat slab modelled as part of the piece rather than added later. A slab gives the ankles — the thinnest point in the whole form — something continuous to stand on, and it lets a tomb set be arranged as a group without any of its members toppling.",
+        "seeAlso": []
+      }
+    ]
+  },
+  {
+    "id": "yue-celadon",
+    "room": "ceramics",
+    "title": "Celadon bowl, Yue kilns",
+    "date": "Tang dynasty (618–907); precise date not recorded by source",
+    "museum": {
+      "name": "Institution not recorded by source (Wikimedia Commons file: Tang Celadon Bowl, Yue Kiln)",
+      "accession": "not recorded by source",
+      "license": "CC0"
+    },
+    "image": {
+      "src": "../assets/img/yue-celadon.jpg",
+      "aspect": "1400/933"
+    },
+    "summary": "A small hemispherical bowl from the Yue kilns of northern Zhejiang under an even grey-green glaze, decorated with a few dark splashes in the well, a run of dashes around the rim, and lightly incised lines beneath the glaze. Yue ware is high-fired stoneware rather than lead-glazed earthenware, and it is the direction Tang ceramics went after the polychrome tomb figures stopped.",
+    "hotspots": [
+      {
+        "x": 0.52,
+        "y": 0.32,
+        "label": "Dashes round the rim",
+        "body": "A ring of short dark strokes runs just inside the lip, spaced by hand and slightly uneven. Placing the only busy passage of decoration at the rim exploits the fact that a bowl is normally seen from above: the ornament sits where the eye already is, and the interior stays open.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.45,
+        "y": 0.48,
+        "label": "Three splashes, and their haloes",
+        "body": "Three dark blots were dropped into the well before glazing. Each has bled outward into a brown halo where the pigment migrated into the glaze during firing, and each has a fine tail running down toward the centre. Decoration this sparing is a decision about restraint — the potter is spending three marks where a sancai workshop would have covered the whole surface.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.64,
+        "y": 0.55,
+        "label": "Incised lines under the glaze",
+        "body": "Shallow curved lines were cut into the leather-hard clay and then glazed over, so they read as faint darker traces where the glaze collected slightly deeper in each groove. Yue decoration works this way throughout: the ornament is in the body and the glaze reveals it, rather than being laid on top in colour.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.54,
+        "y": 0.75,
+        "label": "What replaced polychrome after 755",
+        "body": "Large sancai tomb assemblages effectively stop after the An Lushan rebellion of 755, and monochrome stoneware from kilns like Yue is what late Tang taste moves toward instead: one glaze, evenly applied, judged on colour and surface rather than on spectacle. This bowl is on the far side of that break, and Song ceramics continue from here rather than from the sancai horses.",
+        "seeAlso": [
+          "ceramics.html#sancai-horse"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "celadon-bottle",
+    "room": "ceramics",
+    "title": "Celadon bottle with lug handles",
+    "date": "Tang dynasty (618–907); precise date not recorded by source",
+    "museum": {
+      "name": "Institution not recorded by source (Wikimedia Commons file: Tang Celadon Bottle)",
+      "accession": "not recorded by source",
+      "license": "CC0"
+    },
+    "image": {
+      "src": "../assets/img/celadon-bottle.jpg",
+      "aspect": "2/3"
+    },
+    "summary": "A barrel-bodied bottle with a short cylindrical neck, an everted lip, and small pierced lugs at shoulder and base, recorded by its source as a Tang celadon bottle; in this photograph the glaze reads as an almost colourless pale cream rather than a strong green. Whatever its exact tint, the piece is decorated entirely by profile and glaze — there is no painted or applied ornament anywhere on it.",
+    "hotspots": [
+      {
+        "x": 0.58,
+        "y": 0.15,
+        "label": "Everted lip, turned in one movement",
+        "body": "The rim flares out in a clean unbroken curve, thrown and then folded back over itself on the wheel. A lip like this is a pouring device before it is a decoration: it throws the stream clear of the neck and gives a cord or cloth cover something to bind against.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.31,
+        "y": 0.32,
+        "label": "Pierced lug, applied at the shoulder",
+        "body": "Two small loops were applied where the shoulder turns, each pierced through with a fine hole. Matching lugs sit near the base. Cord threaded top and bottom holds a lid down and lets the bottle be carried or slung — the fittings are for transport, not display.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.5,
+        "y": 0.56,
+        "label": "Throwing rings left visible",
+        "body": "Faint horizontal bands step across the body at regular intervals: the spiral record of the potter's fingers rising up the wall on the wheel. They were not smoothed away. On an undecorated monochrome pot these rings are effectively the ornament, which is why late Tang and Song wares so often keep them.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.55,
+        "y": 0.86,
+        "label": "Monochrome as the whole argument",
+        "body": "There is no colour contrast anywhere on this bottle — one glaze from lip to foot, and every effect earned from silhouette, the turn of the shoulder, and the way light travels over the surface. That is precisely the taste that displaces polychrome sancai after 755, and it carries directly into Song ceramics.",
+        "seeAlso": [
+          "ceramics.html#yue-celadon"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dunhuang-mural",
+    "room": "dunhuang",
+    "title": "Detail of a mural, Mogao Cave 156",
+    "date": "Tang dynasty (618–907); precise date not recorded by source",
+    "museum": {
+      "name": "Mogao Caves, Cave 156, Dunhuang (in situ)",
+      "accession": "not recorded by source",
+      "license": "Public domain"
+    },
+    "image": {
+      "src": "../assets/img/dunhuang-mural.png",
+      "aspect": "640/397"
+    },
+    "summary": "A small detail from a wall painting in Mogao Cave 156, showing a figure beside a two-wheeled cart against a flat turquoise ground crossed by pale horizontal bands. It is a fragment of a much longer procession scene, and it shows the ordinary machinery of Dunhuang painting: banded grounds, flat colour, dark outline, and secular incident carried along the lower edge of a religious wall.",
+    "hotspots": [
+      {
+        "x": 0.47,
+        "y": 0.4,
+        "label": "Bands that divide the wall",
+        "body": "The pale horizontal stripes crossing the turquoise are not landscape — they are the boundary painting between registers. A Mogao wall is laid out as stacked horizontal zones, and these bands are the ruled edges the painters worked to. Reading them first tells you where one scene ends and the next begins.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.58,
+        "y": 0.68,
+        "label": "A cart, drawn in outline and fill",
+        "body": "The cart is built from a dark contour line filled with flat tone, with the two wheels shown as plain discs seen face-on rather than in perspective. Everyday vehicles and labour appear in the lower registers of Dunhuang walls precisely because donors wanted the world they knew represented alongside the sutra scenes above.",
+        "seeAlso": []
+      }
+    ]
+  },
+  {
+    "id": "tang-bodhisattva",
+    "room": "dunhuang",
+    "title": "Bodhisattva, Hebei province",
+    "date": "Tang dynasty (618–907); precise date not recorded by source",
+    "museum": {
+      "name": "Cleveland Museum of Art",
+      "accession": "1929.981",
+      "license": "CC0"
+    },
+    "image": {
+      "src": "../assets/img/tang-bodhisattva.jpg",
+      "aspect": "1400/1867"
+    },
+    "summary": "A marble figure from Hebei province, standing on a lotus pedestal, its head and forearms lost but its body, jewellery, and drapery intact. Even without a face it can be identified: what makes this a bodhisattva rather than a Buddha is entirely a matter of what it wears, and Tang sculptors used that vocabulary consistently enough to be read.",
+    "hotspots": [
+      {
+        "x": 0.47,
+        "y": 0.11,
+        "label": "The missing head",
+        "body": "The neck is a broken socket, and the forearms are gone at the same kind of fracture. Projecting parts — head, hands, attributes held in the hands — are the first things lost from a standing stone figure, which is why so much Tang Buddhist sculpture survives as torsos and why identification has to rest on the body.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.45,
+        "y": 0.17,
+        "label": "Jewellery is the identification",
+        "body": "A beaded collar hangs across the chest with a long chain descending from it. A Buddha wears a plain monastic robe and no ornament; a bodhisattva is shown as a princely figure, wearing necklaces, chains, armlets, and a crown. The jewellery is not decoration added to a Buddha — it is the attribute that tells you this figure is not one.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.45,
+        "y": 0.29,
+        "label": "Sash knotted at the waist",
+        "body": "A wide sash crosses the hips and is tied, with the pendant chain running down over it and looping back. Layered scarves, sashes, and hanging jewel chains across the lower body are standard on Tang bodhisattva figures, and their carved overlaps are what give a frontal standing figure any sense of depth.",
+        "seeAlso": []
+      },
+      {
+        "x": 0.49,
+        "y": 0.83,
+        "label": "Lotus pedestal",
+        "body": "The feet rest on a rounded tier carved as overlapping lotus petals, set on a broader plinth below. The lotus marks the figure as a being standing outside the ordinary world, and structurally it does the work a tomb figure's slab does — it turns two narrow ankles into a wide, stable base.",
+        "seeAlso": []
+      }
+    ]
+  }
+]

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ceramics — Tang Dynasty</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/room.css">
+<link rel="stylesheet" href="../css/zoom.css">
+</head>
+<body class="era-high">
+
+<header class="wrap room-header">
+  <p class="back"><a href="../index.html">← Back to the timeline</a></p>
+  <h1>Ceramics</h1>
+  <p class="prose">Sancai — "three colours" — is a lead-fluxed glaze system that runs
+  during firing. The colours are not painted on so much as allowed to move, and the
+  finished surface is a record of what happened in the kiln. Zoom in and the technique
+  becomes legible.</p>
+  <p class="prose">The room runs from the polychrome tomb figures of the Xuanzong decades
+  to the monochrome celadons that followed the rebellion of 755, because that is the
+  order in which Tang potters changed their minds about what a fine pot was.</p>
+</header>
+
+<main class="wrap" id="objects">
+  <noscript>
+    <p class="notice">The interactive zoom needs JavaScript. The objects and their
+    descriptions are listed below without it.</p>
+  </noscript>
+  <p class="notice">Loading objects…</p>
+</main>
+
+<script type="module">
+  import { initZoomRoom } from "../js/zoom.js";
+  initZoomRoom({
+    container: document.getElementById("objects"),
+    room: "ceramics",
+    dataUrl: "../data/objects.json",
+  });
+</script>
+</body>
+</html>

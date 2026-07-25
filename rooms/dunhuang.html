@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dunhuang — Tang Dynasty</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/room.css">
+<link rel="stylesheet" href="../css/zoom.css">
+</head>
+<body class="era-high">
+
+<header class="wrap room-header">
+  <p class="back"><a href="../index.html">← Back to the timeline</a></p>
+  <h1>Dunhuang and Buddhist art</h1>
+  <p class="prose">Buddhist painting is organised, not arbitrary. Figures sit in registers,
+  scale encodes status, and attributes identify who you are looking at. Once the system is
+  visible the images become readable rather than merely decorative.</p>
+</header>
+
+<main class="wrap" id="objects">
+  <noscript>
+    <p class="notice">The interactive zoom needs JavaScript. The works and their
+    descriptions are listed below without it.</p>
+  </noscript>
+  <p class="notice">Loading objects…</p>
+</main>
+
+<script type="module">
+  import { initZoomRoom } from "../js/zoom.js";
+  initZoomRoom({
+    container: document.getElementById("objects"),
+    room: "dunhuang",
+    dataUrl: "../data/objects.json",
+  });
+</script>
+</body>
+</html>
