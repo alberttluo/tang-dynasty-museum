@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poetry — Tang Dynasty</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/room.css">
+<link rel="stylesheet" href="../css/poem.css">
+</head>
+<body class="era-late">
+
+<header class="wrap room-header">
+  <p class="back"><a href="../index.html">← Back to the timeline</a></p>
+  <h1>Poetry</h1>
+  <p class="prose">Three poems, read closely. Hover or focus a character for its sense in
+  that line, and toggle the tone pattern to see the alternation the form is built on.</p>
+  <p class="notice">On tones: the level and oblique marks shown here are
+  <strong>reconstructed</strong> <em>píng</em>/<em>zè</em> categories for Middle Chinese,
+  the phonology of the Tang period. They are not modern Mandarin tones, and a character's
+  modern tone does not reliably indicate its historical category. This site makes no claim
+  to reproduce eighth-century pronunciation and includes no audio, because Middle Chinese
+  phonology is reconstructed from rhyme dictionaries and comparative evidence rather than
+  heard.</p>
+</header>
+
+<main class="wrap" id="poems">
+  <noscript>
+    <p class="notice">The per-character gloss needs JavaScript. The full text of each poem
+    and both translations are below.</p>
+
+    <article class="poem">
+      <h2 lang="zh-Hans">静夜思</h2>
+      <p class="poem-meta">Quiet Night Thoughts · Li Bai (701–762)</p>
+      <p class="prose">Written in the decades before 755, when the court Li Bai orbited
+      still looked permanent. Twenty characters, and the best-known short poem in the
+      language.</p>
+      <p lang="zh-Hans">床前明月光，</p>
+      <p lang="zh-Hans">疑是地上霜。</p>
+      <p lang="zh-Hans">举头望明月，</p>
+      <p lang="zh-Hans">低头思故乡。</p>
+      <p class="prose"><strong>Literal:</strong> Before the bed, bright moonlight. I take
+      it for frost on the ground. I raise my head and gaze at the bright moon; I lower my
+      head and long for my home village.</p>
+      <p class="prose"><strong>Literary:</strong> Moonlight pools at the foot of the bed —
+      for a moment I take it for frost on the ground. I lift my head to the bright moon,
+      lower it, and think of home.</p>
+    </article>
+
+    <article class="poem">
+      <h2 lang="zh-Hans">春望</h2>
+      <p class="poem-meta">Spring Prospect · Du Fu (712–770)</p>
+      <p class="prose">Written in the spring of 757, while Du Fu was held in Chang'an after
+      the An Lushan rebellion had taken the capital the previous year. The city he is
+      looking at is an occupied one, and the poem's whole argument sits in its first line:
+      the dynasty's order has broken and the landscape has not noticed.</p>
+      <p lang="zh-Hans">国破山河在，城春草木深。</p>
+      <p lang="zh-Hans">感时花溅泪，恨别鸟惊心。</p>
+      <p lang="zh-Hans">烽火连三月，家书抵万金。</p>
+      <p lang="zh-Hans">白头搔更短，浑欲不胜簪。</p>
+      <p class="prose"><strong>Literal:</strong> The state is shattered; mountains and
+      rivers remain. In the city, spring — the grasses and trees grow rank. Stirred by the
+      times, the blossoms splash tears; grieving at parting, the birds startle the heart.
+      Beacon fires have run on three months together; a letter from home is worth ten
+      thousand in gold. My white head, scratched at, is thinner still — it is quite about
+      to fail to hold the pin.</p>
+      <p class="prose"><strong>Literary:</strong> The country is broken; the mountains and
+      rivers are still here. Spring comes to the city and the weeds grow deep. Moved by the
+      times, the flowers are wet with tears; sick at parting, the birds startle the heart.
+      Three months now the beacon fires have not gone out, and a letter from home would be
+      worth ten thousand in gold. I scratch my white head and it thins under my hand — soon
+      it will not hold the pin at all.</p>
+    </article>
+
+    <article class="poem">
+      <h2 lang="zh-Hans">鹿柴</h2>
+      <p class="poem-meta">Deer Enclosure · Wang Wei (c. 699–761)</p>
+      <p class="prose">One of the twenty short poems of the <span lang="zh-Hans">辋川集</span>
+      (Wang River Collection), written about Wang Wei's estate in the Zhongnan mountains
+      south of Chang'an, most likely in the 740s or early 750s. The title's second
+      character is read <em>zhài</em> here — an enclosure or palisade — not <em>chái</em>,
+      "firewood".</p>
+      <p lang="zh-Hans">空山不见人，</p>
+      <p lang="zh-Hans">但闻人语响。</p>
+      <p lang="zh-Hans">返景入深林，</p>
+      <p lang="zh-Hans">复照青苔上。</p>
+      <p class="prose"><strong>Literal:</strong> Empty hills — no one is seen; only the echo
+      of human speech is heard. Returning light enters the deep wood, and shines again upon
+      the green moss.</p>
+      <p class="prose"><strong>Literary:</strong> Empty hills, and no one in sight; only
+      voices carrying, and their echo. Late light slips back into the deep wood and settles
+      once more on the green moss.</p>
+    </article>
+  </noscript>
+  <p class="notice">Loading poems…</p>
+</main>
+
+<script type="module">
+  import { initPoemRoom } from "../js/poem.js";
+  initPoemRoom({
+    container: document.getElementById("poems"),
+    dataUrl: "../data/poems.json",
+  });
+</script>
+</body>
+</html>

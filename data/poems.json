@@ -1,0 +1,185 @@
+[
+  {
+    "id": "jingyesi",
+    "author": "Li Bai",
+    "title": "静夜思",
+    "titleGloss": "Quiet Night Thoughts",
+    "context": "The best-known short poem in the language, and a good place to see how much a Tang quatrain does with twenty characters. Li Bai (701–762) wrote it in the decades before 755, when the court he orbited still looked permanent. Tone categories below are reconstructed ping/ze classes for Middle Chinese, not modern Mandarin tones. Two characters here carry more than one historical reading and are worth flagging rather than asserting silently: 望 exists in both the level and the departing tone, and is marked oblique on the metrical evidence of this line; 上 in line two is the departing-tone locative \"upon\", not the rising-tone verb \"to ascend\". 月 is an entering-tone syllable — it ended in -t in Middle Chinese — and so is oblique despite its modern fourth tone.",
+    "lines": [
+      {
+        "characters": [
+          { "char": "床", "pinyin": "chuáng", "gloss": "bed", "tone": "level" },
+          { "char": "前", "pinyin": "qián", "gloss": "before, in front of", "tone": "level" },
+          { "char": "明", "pinyin": "míng", "gloss": "bright", "tone": "level" },
+          { "char": "月", "pinyin": "yuè", "gloss": "moon", "tone": "oblique" },
+          { "char": "光", "pinyin": "guāng", "gloss": "light", "tone": "level" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "疑", "pinyin": "yí", "gloss": "to take it for, to half-believe", "tone": "level" },
+          { "char": "是", "pinyin": "shì", "gloss": "to be", "tone": "oblique" },
+          { "char": "地", "pinyin": "dì", "gloss": "ground", "tone": "oblique" },
+          { "char": "上", "pinyin": "shàng", "gloss": "upon", "tone": "oblique" },
+          { "char": "霜", "pinyin": "shuāng", "gloss": "frost", "tone": "level" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "举", "pinyin": "jǔ", "gloss": "to raise", "tone": "oblique" },
+          { "char": "头", "pinyin": "tóu", "gloss": "head", "tone": "level" },
+          { "char": "望", "pinyin": "wàng", "gloss": "to gaze at", "tone": "oblique" },
+          { "char": "明", "pinyin": "míng", "gloss": "bright", "tone": "level" },
+          { "char": "月", "pinyin": "yuè", "gloss": "moon", "tone": "oblique" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "低", "pinyin": "dī", "gloss": "to lower", "tone": "level" },
+          { "char": "头", "pinyin": "tóu", "gloss": "head", "tone": "level" },
+          { "char": "思", "pinyin": "sī", "gloss": "to long for", "tone": "level" },
+          { "char": "故", "pinyin": "gù", "gloss": "old, the one I came from", "tone": "oblique" },
+          { "char": "乡", "pinyin": "xiāng", "gloss": "home village", "tone": "level" }
+        ]
+      }
+    ],
+    "translations": {
+      "literal": "Before the bed, bright moonlight. I take it for frost on the ground. I raise my head and gaze at the bright moon; I lower my head and long for my home village.",
+      "literary": "Moonlight pools at the foot of the bed — for a moment I take it for frost on the ground. I lift my head to the bright moon, lower it, and think of home."
+    }
+  },
+  {
+    "id": "chunwang",
+    "author": "Du Fu",
+    "title": "春望",
+    "titleGloss": "Spring Prospect",
+    "context": "Written in the spring of 757, while Du Fu was held in Chang'an after the An Lushan rebellion had taken the capital the previous year. The city he is looking at is an occupied one, and the poem's whole argument sits in its first line: the dynasty's order has broken and the landscape has not noticed. This is the rupture the rest of this site describes, heard from inside it. On tone categories: 国, 木, 别, 月, 白, 欲 and 不 all belong to the entering tone — syllables that ended in -p, -t or -k in Middle Chinese — and are therefore oblique even where modern Mandarin gives them a first or second tone. Two characters have competing readings and are flagged rather than guessed: 更 in line seven is the departing-tone adverb \"the more\", not the level-tone verb \"to change\"; 胜 in line eight is the level-tone shēng \"to withstand\", not the departing-tone shèng \"victory\".",
+    "lines": [
+      {
+        "characters": [
+          { "char": "国", "pinyin": "guó", "gloss": "the state, the capital", "tone": "oblique" },
+          { "char": "破", "pinyin": "pò", "gloss": "shattered", "tone": "oblique" },
+          { "char": "山", "pinyin": "shān", "gloss": "mountains", "tone": "level" },
+          { "char": "河", "pinyin": "hé", "gloss": "rivers", "tone": "level" },
+          { "char": "在", "pinyin": "zài", "gloss": "remain, are still here", "tone": "oblique" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "城", "pinyin": "chéng", "gloss": "the walled city", "tone": "level" },
+          { "char": "春", "pinyin": "chūn", "gloss": "in spring", "tone": "level" },
+          { "char": "草", "pinyin": "cǎo", "gloss": "grasses", "tone": "oblique" },
+          { "char": "木", "pinyin": "mù", "gloss": "trees", "tone": "oblique" },
+          { "char": "深", "pinyin": "shēn", "gloss": "grow rank, grow deep", "tone": "level" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "感", "pinyin": "gǎn", "gloss": "stirred by", "tone": "oblique" },
+          { "char": "时", "pinyin": "shí", "gloss": "the times", "tone": "level" },
+          { "char": "花", "pinyin": "huā", "gloss": "blossoms", "tone": "level" },
+          { "char": "溅", "pinyin": "jiàn", "gloss": "splash, scatter", "tone": "oblique" },
+          { "char": "泪", "pinyin": "lèi", "gloss": "tears", "tone": "oblique" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "恨", "pinyin": "hèn", "gloss": "grieving at", "tone": "oblique" },
+          { "char": "别", "pinyin": "bié", "gloss": "parting, separation", "tone": "oblique" },
+          { "char": "鸟", "pinyin": "niǎo", "gloss": "birds", "tone": "oblique" },
+          { "char": "惊", "pinyin": "jīng", "gloss": "startle", "tone": "level" },
+          { "char": "心", "pinyin": "xīn", "gloss": "the heart", "tone": "level" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "烽", "pinyin": "fēng", "gloss": "signal-beacon", "tone": "level" },
+          { "char": "火", "pinyin": "huǒ", "gloss": "fires", "tone": "oblique" },
+          { "char": "连", "pinyin": "lián", "gloss": "running on without a break", "tone": "level" },
+          { "char": "三", "pinyin": "sān", "gloss": "three", "tone": "level" },
+          { "char": "月", "pinyin": "yuè", "gloss": "months", "tone": "oblique" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "家", "pinyin": "jiā", "gloss": "home, family", "tone": "level" },
+          { "char": "书", "pinyin": "shū", "gloss": "letter", "tone": "level" },
+          { "char": "抵", "pinyin": "dǐ", "gloss": "is worth, matches", "tone": "oblique" },
+          { "char": "万", "pinyin": "wàn", "gloss": "ten thousand", "tone": "oblique" },
+          { "char": "金", "pinyin": "jīn", "gloss": "in gold", "tone": "level" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "白", "pinyin": "bái", "gloss": "white", "tone": "oblique" },
+          { "char": "头", "pinyin": "tóu", "gloss": "head, the hair on it", "tone": "level" },
+          { "char": "搔", "pinyin": "sāo", "gloss": "scratched at", "tone": "level" },
+          { "char": "更", "pinyin": "gèng", "gloss": "all the more", "tone": "oblique" },
+          { "char": "短", "pinyin": "duǎn", "gloss": "short, thinning", "tone": "oblique" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "浑", "pinyin": "hún", "gloss": "quite, altogether", "tone": "level" },
+          { "char": "欲", "pinyin": "yù", "gloss": "on the point of", "tone": "oblique" },
+          { "char": "不", "pinyin": "bù", "gloss": "not", "tone": "oblique" },
+          { "char": "胜", "pinyin": "shēng", "gloss": "to bear the weight of", "tone": "level" },
+          { "char": "簪", "pinyin": "zān", "gloss": "hairpin", "tone": "level" }
+        ]
+      }
+    ],
+    "translations": {
+      "literal": "The state is shattered; mountains and rivers remain. In the city, spring — the grasses and trees grow rank. Stirred by the times, the blossoms splash tears; grieving at parting, the birds startle the heart. Beacon fires have run on three months together; a letter from home is worth ten thousand in gold. My white head, scratched at, is thinner still — it is quite about to fail to hold the pin.",
+      "literary": "The country is broken; the mountains and rivers are still here. Spring comes to the city and the weeds grow deep. Moved by the times, the flowers are wet with tears; sick at parting, the birds startle the heart. Three months now the beacon fires have not gone out, and a letter from home would be worth ten thousand in gold. I scratch my white head and it thins under my hand — soon it will not hold the pin at all."
+    }
+  },
+  {
+    "id": "luzhai",
+    "author": "Wang Wei",
+    "title": "鹿柴",
+    "titleGloss": "Deer Enclosure",
+    "context": "One of the twenty short poems in the 辋川集 (Wang River Collection), which Wang Wei (c. 699–761) wrote about his estate in the Zhongnan mountains south of Chang'an, most likely in the 740s or early 750s. Set beside Du Fu's 757 poem it shows what the rupture cost: this is a landscape a court official could still afford to disappear into. The title's second character is read zhài here — an enclosure or palisade — not chái, \"firewood\". In line three 景 stands for 影, light thrown back, not scenery. On tone categories: 但 sits in the rising tone in the Tang rhyme books although modern Mandarin gives it a fourth tone; either reading is oblique, so nothing turns on it. 不, 入 and 复 are entering-tone syllables and so oblique.",
+    "lines": [
+      {
+        "characters": [
+          { "char": "空", "pinyin": "kōng", "gloss": "empty", "tone": "level" },
+          { "char": "山", "pinyin": "shān", "gloss": "hills", "tone": "level" },
+          { "char": "不", "pinyin": "bú", "gloss": "not", "tone": "oblique" },
+          { "char": "见", "pinyin": "jiàn", "gloss": "to see", "tone": "oblique" },
+          { "char": "人", "pinyin": "rén", "gloss": "anyone", "tone": "level" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "但", "pinyin": "dàn", "gloss": "only", "tone": "oblique" },
+          { "char": "闻", "pinyin": "wén", "gloss": "to hear", "tone": "level" },
+          { "char": "人", "pinyin": "rén", "gloss": "human", "tone": "level" },
+          { "char": "语", "pinyin": "yǔ", "gloss": "speech, voices", "tone": "oblique" },
+          { "char": "响", "pinyin": "xiǎng", "gloss": "echo, resonance", "tone": "oblique" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "返", "pinyin": "fǎn", "gloss": "returning, thrown back", "tone": "oblique" },
+          { "char": "景", "pinyin": "jǐng", "gloss": "light (景 here stands for 影)", "tone": "oblique" },
+          { "char": "入", "pinyin": "rù", "gloss": "enters", "tone": "oblique" },
+          { "char": "深", "pinyin": "shēn", "gloss": "deep", "tone": "level" },
+          { "char": "林", "pinyin": "lín", "gloss": "wood", "tone": "level" }
+        ]
+      },
+      {
+        "characters": [
+          { "char": "复", "pinyin": "fù", "gloss": "again", "tone": "oblique" },
+          { "char": "照", "pinyin": "zhào", "gloss": "shines on", "tone": "oblique" },
+          { "char": "青", "pinyin": "qīng", "gloss": "green", "tone": "level" },
+          { "char": "苔", "pinyin": "tái", "gloss": "moss", "tone": "level" },
+          { "char": "上", "pinyin": "shàng", "gloss": "upon", "tone": "oblique" }
+        ]
+      }
+    ],
+    "translations": {
+      "literal": "Empty hills — no one is seen; only the echo of human speech is heard. Returning light enters the deep wood, and shines again upon the green moss.",
+      "literary": "Empty hills, and no one in sight; only voices carrying, and their echo. Late light slips back into the deep wood and settles once more on the green moss."
+    }
+  }
+]

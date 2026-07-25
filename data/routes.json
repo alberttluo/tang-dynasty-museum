@@ -1,0 +1,42 @@
+{
+  "nodes": [
+    { "id": "changan", "name": "Chang'an", "x": 860, "y": 300,
+      "layers": ["goods", "religions", "quarters"],
+      "body": "The eastern terminus and the largest city in the world at its height, laid out as a walled grid with a foreign quarter near the West Market. Everything on this map converges here.",
+      "seeAlso": [] },
+    { "id": "dunhuang", "name": "Dunhuang", "x": 600, "y": 250,
+      "layers": ["goods", "religions"],
+      "body": "The junction where the routes around the Taklamakan rejoined, and a Buddhist cave complex sustained by the traffic passing through it.",
+      "seeAlso": ["dunhuang.html"] },
+    { "id": "kucha", "name": "Kucha", "x": 430, "y": 210,
+      "layers": ["goods", "religions"],
+      "body": "An oasis kingdom whose musicians and instruments were absorbed into Tang court music so completely that the court's repertoire was substantially Central Asian.",
+      "seeAlso": [] },
+    { "id": "samarkand", "name": "Samarkand", "x": 250, "y": 230,
+      "layers": ["goods", "religions", "quarters"],
+      "body": "A Sogdian city whose merchants ran much of the overland trade. Sogdians appear repeatedly in Tang tomb ceramics as grooms, camel drivers, and traders.",
+      "seeAlso": [] },
+    { "id": "khotan", "name": "Khotan", "x": 380, "y": 330,
+      "layers": ["goods"],
+      "body": "The principal source of nephrite jade reaching China, and a Buddhist kingdom on the southern rim of the Taklamakan.",
+      "seeAlso": [] },
+    { "id": "ctesiphon", "name": "Ctesiphon / Baghdad", "x": 110, "y": 300,
+      "layers": ["goods", "religions"],
+      "body": "Sasanian then Abbasid Mesopotamia. Sasanian metalwork forms travelled east and were reinterpreted in Tang silver and ceramic; cobalt for blue glaze came from this direction.",
+      "seeAlso": [] },
+    { "id": "guangzhou", "name": "Guangzhou", "x": 830, "y": 460,
+      "layers": ["goods", "quarters"],
+      "body": "The southern maritime port, with a resident community of Arab and Persian merchants. Sea trade grew in importance as the overland routes contracted after 755.",
+      "seeAlso": [] }
+  ],
+  "edges": [
+    { "from": "ctesiphon", "to": "samarkand" },
+    { "from": "samarkand", "to": "kucha" },
+    { "from": "samarkand", "to": "khotan" },
+    { "from": "kucha", "to": "dunhuang" },
+    { "from": "khotan", "to": "dunhuang" },
+    { "from": "dunhuang", "to": "changan" },
+    { "from": "ctesiphon", "to": "guangzhou" },
+    { "from": "guangzhou", "to": "changan" }
+  ]
+}

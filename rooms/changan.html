@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chang'an and the Silk Road — Tang Dynasty</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/room.css">
+<link rel="stylesheet" href="../css/map.css">
+</head>
+<body class="era-high">
+
+<header class="wrap room-header">
+  <p class="back"><a href="../index.html">← Back to the timeline</a></p>
+  <h1>Chang'an and the Silk Road</h1>
+  <p class="prose">Chang'an was the eastern end of a trade system that ran to Mesopotamia,
+  and the objects buried in its tombs record who came down it. Toggle the layers to
+  separate goods from religions from the resident foreign communities, then select a place
+  to see what arrived from there.</p>
+</header>
+
+<main class="wrap" id="map-room">
+  <noscript>
+    <p class="notice">The interactive map needs JavaScript. Every place and what arrived
+    from it is described in the list below.</p>
+    <dl class="hotspot-list">
+      <dt>Chang'an</dt>
+      <dd>The eastern terminus and the largest city in the world at its height, laid out
+      as a walled grid with a foreign quarter near the West Market.</dd>
+      <dt>Dunhuang</dt>
+      <dd>The junction where the routes around the Taklamakan rejoined, and a Buddhist
+      cave complex sustained by the traffic passing through it.</dd>
+      <dt>Kucha</dt>
+      <dd>An oasis kingdom whose musicians and instruments were absorbed into Tang court
+      music.</dd>
+      <dt>Samarkand</dt>
+      <dd>A Sogdian city whose merchants ran much of the overland trade, and who appear
+      repeatedly in Tang tomb ceramics.</dd>
+      <dt>Khotan</dt>
+      <dd>The principal source of nephrite jade reaching China.</dd>
+      <dt>Ctesiphon and Baghdad</dt>
+      <dd>Sasanian then Abbasid Mesopotamia. Metalwork forms travelled east; cobalt for
+      blue glaze came from this direction.</dd>
+      <dt>Guangzhou</dt>
+      <dd>The southern maritime port, with resident Arab and Persian merchants. Sea trade
+      grew as the overland routes contracted after 755.</dd>
+    </dl>
+  </noscript>
+  <p class="notice">Loading the map…</p>
+</main>
+
+<script type="module">
+  import { initMapRoom } from "../js/map.js";
+  initMapRoom({
+    container: document.getElementById("map-room"),
+    dataUrl: "../data/routes.json",
+  });
+</script>
+</body>
+</html>

@@ -18,6 +18,15 @@
 .room-index a { font-size: var(--size-step-1); }
 
 .era-section { padding-block: var(--space-2xl); border-block-end: 1px solid var(--rule); }
+
+/* index.html puts .wrap and .prose on the SAME element in each section. .wrap
+   centres with auto margins and .prose narrows to the measure, so together they
+   centre the reading column -- which does not share a left edge with the hero or
+   the room index, where .prose sits on a child instead. Let the wrap keep its
+   full centred box and narrow the children, so every left edge lines up at any
+   viewport width. */
+.era-section > .wrap.prose { max-width: none; }
+.era-section > .wrap.prose > * { max-width: var(--measure); }
 .section-year {
   font-family: var(--font-sans); font-size: var(--size-step--1);
   letter-spacing: 0.2em; color: var(--accent); margin-block-end: var(--space-2xs);

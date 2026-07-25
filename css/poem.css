@@ -1,0 +1,44 @@
+.poem { padding-block: var(--space-xl); border-block-end: 1px solid var(--rule); }
+.poem h2 { font-size: var(--size-step-2); }
+.poem-meta {
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  color: var(--muted); margin-block: var(--space-3xs) var(--space-s);
+}
+
+.poem-toggles { display: flex; gap: var(--space-2xs); margin-block: var(--space-s); }
+.poem-toggle {
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  padding: var(--space-3xs) var(--space-2xs);
+  background: var(--paper-raised); border: 1px solid var(--rule); cursor: pointer;
+}
+.poem-toggle[aria-pressed="true"] { background: var(--accent); color: var(--paper); }
+
+.poem-line { display: flex; gap: var(--space-2xs); }
+.poem-char {
+  font-family: var(--font-serif); font-size: var(--size-step-2);
+  background: transparent; border: 1px solid transparent; cursor: help;
+  padding: var(--space-3xs); line-height: 1.2;
+}
+.poem-char:hover, .poem-char:focus-visible { border-color: var(--accent); }
+
+/* Tone marks are hidden until the toggle is pressed, and never occupy space
+   when hidden, so the poem's own spacing is unaffected. */
+.tone-marks { display: none; gap: var(--space-2xs); }
+.poem.show-tones .tone-marks { display: flex; }
+.tone-mark {
+  width: calc(var(--size-step-2) + var(--space-2xs));
+  text-align: center; color: var(--accent-3); font-family: var(--font-sans);
+}
+
+.poem-gloss {
+  min-height: 4.5rem; margin-block: var(--space-s);
+  padding: var(--space-2xs) var(--space-s);
+  background: var(--paper-raised); border-inline-start: 3px solid var(--accent-3);
+  display: flex; flex-wrap: wrap; gap: var(--space-s); align-items: baseline;
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+}
+.gloss-char { font-family: var(--font-serif); font-size: var(--size-step-1); }
+.gloss-sense { font-size: var(--size-step-0); }
+.gloss-tone { color: var(--muted); }
+
+.poem-translation { max-width: var(--measure); font-style: italic; }
