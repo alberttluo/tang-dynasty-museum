@@ -32,8 +32,23 @@ python3 tools/validate.py
 ```
 
 It checks record shape, that every referenced image exists, that hotspot
-coordinates are within 0–1, and that every cross-link resolves. Run it before
-every commit.
+coordinates are within 0-1, that every cross-link resolves to a real page and
+anchor, and that the generated no-JavaScript fallback is not stale. Run it
+before every commit. Add `--strict` to also require that every data file
+exists, which is what you want in CI.
+
+If you change `data/objects.json`, regenerate the no-JavaScript fallback that
+the two zoom rooms carry:
+
+```bash
+python3 tools/build_fallback.py
+```
+
+The validator fails until you do. Run the unit tests with:
+
+```bash
+cd tools && python3 -m unittest discover -s .
+```
 
 ## Deploying
 

@@ -3005,3 +3005,73 @@ should pass as written unless the values are changed.
 **Two spec items needed explicit placement.** The self-hosted CJK font subset has a real ordering dependency — it cannot be subset before `poems.json` exists — so it lands in Task 11 Step 8 with a system-font stack covering the interim. And `check_crosslinks` is deliberately separated from the per-file checks in Task 12, because cross-file validation needs several files loaded at once and would otherwise duplicate loading logic across four independent checks.
 
 **Type consistency.** `checkObject`, `checkRoutes`, and `checkPoem` all return `string[]`; the Python `check_*` functions all return `list[str]`. `createPanZoom` is used only as `panzoomFactory(viewport, stage)` and its `getState` is never called by app code (it exists for console verification). `loadRecords` returns `{ records, skipped }` and every call site destructures exactly those keys. `initZoomRoom`, `initMapRoom`, and `initPoemRoom` all take a single options object with `container` and `dataUrl`; `initZoomRoom` additionally takes `room`. `map.js` deliberately does not use `loadRecords`, and the reason is stated in its Interfaces block, because `routes.json` is an object rather than an array.
+
+---
+
+## Deviations Applied During Implementation
+
+Recorded as built, so the plan and the repository do not disagree.
+
+**1. Image source: Met API → Wikimedia Commons.** `collectionapi.metmuseum.org` and
+`images.metmuseum.org` are unreachable from the build network (an allowlist, not an
+outage — `api.github.com` and Wikimedia resolve fine). Licences are therefore read from
+the Commons API `extmetadata` rather than the Met's `isPublicDomain` flag. The rule did
+not change: only `Public domain`, `CC0`, or `PD-*` shipped, `CC BY`/`CC BY-SA` were
+rejected because the credit format carries no attribution field, and every value in
+`CREDITS.md` came from an API response rather than memory. See `tools/MANIFEST.md`.
+
+**2. `css/room.css` split per room.** The plan had Tasks 6, 9, and 11 all appending to
+one stylesheet. Those tasks ran concurrently, which would have raced on that file, so
+`room.css` keeps only shared chrome and each room owns `css/zoom.css`, `css/map.css`, or
+`css/poem.css`. This also matches the plan's own preference for small focused files.
+
+**3. Tasks 6, 8, and 10 merged into one agent.** Ceramics and Dunhuang share
+`data/objects.json`; a single owner is safer than two agents serialized on one file. The
+reuse requirement still held and was checked: `js/zoom.js` contains no room-specific
+branching, only a filter on the record's `room` field.
+
+**4. Subagents were barred from running git.** Concurrent `git commit` calls race on
+`index.lock`. Agents wrote files only; commits were made between waves.
+
+**5. Font subsetting (Task 11 Step 8) deferred.** The Noto CJK release host and PyPI are
+unreachable, and `fonttools` is unavailable, so the site relies on the system CJK
+fallback. Verified rendering on Windows via SimSun; **unverified on Linux and Android**,
+where characters could fall back to a sans face. Recorded in `tools/MANIFEST.md`.
+
+**6. Serif stack reordered Latin-first.** The plan's stack led with `"Noto Serif SC",
+"Songti SC", "SimSun"`, which made every Latin letter render in SimSun's fixed-width
+Latin glyphs on Windows. Browsers fall back per glyph, so Latin faces now come first and
+CJK sits behind them.
+
+**7. No-JS fallback is generated, not hand-written.** The plan called for a static
+fallback in each zoom room, but the room pages as first built only carried a notice
+claiming "the objects are listed below" while listing nothing — a false promise with
+JavaScript off. `tools/build_fallback.py` now generates the block from
+`data/objects.json`, and `tools/validate.py` fails when it goes stale, so the duplicated
+content cannot drift silently.
+
+**8. Map places became real link targets.** `js/map.js` set no `id` on its nodes, so a
+cross-link like `changan.html#samarkand` pointed at nothing. Nodes now carry ids, the
+hash selects that place on load, and the validator checks anchors per page — map ids on
+`changan.html`, object ids elsewhere.
+
+**9. Timeline sections were centred while the hero was flush left.** Caused by this
+plan's own markup putting `.wrap` and `.prose` on the same element, where the auto
+margins centre the narrowed column. Fixed by narrowing the children instead.
+
+### Verification actually performed, and what was not
+
+Performed: `tools/validate.py --strict` clean; 24 stdlib unit tests passing; every page
+rendered headless at 1280px and 360px and inspected; hotspot placement checked against
+each source photograph; the no-JS fallback markup rendered and read; the staleness and
+dead-anchor checks each proven to fail on deliberately broken input.
+
+**Not performed — no interactive browser was available.** Hover reveals, Tab focus order
+and focus-ring visibility, drag-to-pan, pinch-zoom, `Esc` behaviour, dimmed nodes leaving
+the tab order, and the scroll-driven era palette swap were all verified only by reading
+the code that implements them. The manual QA checklist in this plan remains the real
+gate for those, and it has not been run.
+
+**Screenshots of this site require `--virtual-time-budget`.** Content is fetched and
+rendered asynchronously; without that flag a screenshot captures the static "Loading…"
+placeholder and reads as a broken page.

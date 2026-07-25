@@ -234,6 +234,36 @@ def _load(path):
         return json.load(handle)
 
 
+def check_fallback(records, repo_root):
+    """Verify each zoom room's generated no-JS block matches data/objects.json.
+
+    The block duplicates object content so the rooms stay readable without
+    JavaScript. Duplicated content drifts, so this makes drift a failure rather
+    than something a reader discovers.
+    """
+    try:
+        from build_fallback import ROOMS, START, END, build_block
+    except ImportError as error:
+        return [f"could not import build_fallback.py: {error}"]
+
+    problems = []
+    for room, relpath in ROOMS.items():
+        path = repo_root / relpath
+        if not path.is_file():
+            problems.append(f"{relpath}: room page is missing")
+            continue
+        page = path.read_text(encoding="utf-8")
+        if START not in page or END not in page:
+            problems.append(f"{relpath}: generated-fallback markers are missing")
+            continue
+        current = page[page.index(START) : page.index(END) + len(END)]
+        if current.strip() != build_block(records, room).strip():
+            problems.append(
+                f"{relpath}: no-JS fallback is stale — run python3 tools/build_fallback.py"
+            )
+    return problems
+
+
 def main(argv=None):
     """Validate all data files.
 
@@ -281,14 +311,17 @@ def main(argv=None):
         except json.JSONDecodeError:
             return fallback  # already reported above
 
+    objects = _maybe("objects.json", [])
     problems.extend(
         check_crosslinks(
-            _maybe("objects.json", []),
+            objects,
             _maybe("routes.json", {"nodes": []}),
             _maybe("timeline.json", []),
             repo_root,
         )
     )
+    if objects:
+        problems.extend(check_fallback(objects, repo_root))
 
     if problems:
         print(f"{len(problems)} problem(s) found:\n")
