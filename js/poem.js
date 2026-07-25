@@ -59,6 +59,16 @@ function renderPoem(record) {
   const article = el("article", { class: "poem", id: record.id });
   const gloss = el("div", { class: "poem-gloss", role: "status", "aria-live": "polite" });
 
+  // The panel reserves its height so revealing a gloss does not shift the poem.
+  // Left empty it reads as a broken box, so give it a resting instruction that
+  // the first hover or focus replaces.
+  gloss.append(
+    el("span", {
+      class: "gloss-hint",
+      text: "Hover or focus a character for its sense, reading, and tone class.",
+    })
+  );
+
   const lines = el("div", { class: "poem-lines" });
   for (const line of record.lines) {
     const row = el("div", { class: "poem-line" });

@@ -42,3 +42,5 @@
 .gloss-tone { color: var(--muted); }
 
 .poem-translation { max-width: var(--measure); font-style: italic; }
+
+.gloss-hint { color: var(--muted); font-style: italic; }

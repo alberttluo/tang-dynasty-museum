@@ -37,7 +37,10 @@ function svg(tag, attrs = {}) {
 function buildMap(data, onSelect) {
   const byId = new Map(data.nodes.map((node) => [node.id, node]));
   const root = svg("svg", {
-    viewBox: "0 0 1000 520",
+    // Framed to the node coordinates actually in use (x 110-860, y 210-460,
+    // plus circle radius and label width to the right of the easternmost node)
+    // rather than a nominal 1000x520 box, which left the top third empty.
+    viewBox: "80 170 900 330",
     class: "route-map",
     role: "img",
     "aria-label": "Schematic map of trade routes converging on Chang'an",
