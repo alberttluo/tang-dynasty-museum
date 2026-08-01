@@ -48,3 +48,129 @@ a { color: var(--accent); text-underline-offset: 0.15em; }
   font-family: var(--font-sans);
   font-size: var(--size-step--1);
 }
+
+/* ---- Plates -------------------------------------------------------------
+   An object photograph matted onto a deep ground. The photographs are museum
+   files shown unaltered, so the studio background travels with them; the mat
+   is what stops that grey reading as a mismatched rectangle on the paper. */
+
+.plate {
+  background: var(--plate);
+  color: var(--plate-ink);
+  padding: clamp(var(--space-s), 4vw, var(--space-xl));
+  box-shadow: var(--plate-shadow);
+  transition: background-color var(--era-transition);
+}
+
+.plate-figure { display: grid; gap: var(--space-s); }
+
+.plate-frame {
+  background: var(--plate-mat);
+  border: 1px solid var(--plate-edge);
+  padding: clamp(var(--space-2xs), 1.5vw, var(--space-s));
+}
+.plate-frame img { width: 100%; height: auto; }
+
+.plate figcaption, .plate-caption {
+  max-width: var(--measure);
+  font-family: var(--font-sans);
+  font-size: var(--size-step--1);
+  color: var(--plate-muted);
+}
+.plate-caption strong { color: var(--plate-ink); font-weight: 600; }
+.plate a { color: var(--plate-ink); }
+.plate :where(a, button):focus-visible { outline-color: var(--plate-ink); }
+
+/* Escapes a centred .wrap to full viewport width. Only needed inside a width-
+   constrained ancestor -- a band that is already a child of a full-width section
+   does not need it, and applying it there overhangs the viewport, because vw
+   counts the scrollbar gutter. css/spine.css clips the root against that. */
+.bleed { margin-inline: calc(50% - 50vw); }
+
+/* ---- Ornament -----------------------------------------------------------
+   Tang-derived motifs, drawn here rather than sourced. They are masks rather
+   than <img> so they take --ornament and follow the era palette, and because a
+   mask is not in the accessibility tree -- these carry no meaning to convey. */
+
+.ornament {
+  display: block;
+  background-color: var(--ornament);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
+.ornament-rosette {
+  --mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g fill='black'><ellipse cx='12' cy='5.2' rx='2.2' ry='3.4'/><ellipse cx='12' cy='5.2' rx='2.2' ry='3.4' transform='rotate(45 12 12)'/><ellipse cx='12' cy='5.2' rx='2.2' ry='3.4' transform='rotate(90 12 12)'/><ellipse cx='12' cy='5.2' rx='2.2' ry='3.4' transform='rotate(135 12 12)'/><ellipse cx='12' cy='5.2' rx='2.2' ry='3.4' transform='rotate(180 12 12)'/><ellipse cx='12' cy='5.2' rx='2.2' ry='3.4' transform='rotate(225 12 12)'/><ellipse cx='12' cy='5.2' rx='2.2' ry='3.4' transform='rotate(270 12 12)'/><ellipse cx='12' cy='5.2' rx='2.2' ry='3.4' transform='rotate(315 12 12)'/><circle cx='12' cy='12' r='2.6'/></g></svg>");
+  aspect-ratio: 1;
+}
+
+.ornament-lotus {
+  --mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g fill='black'><path d='M12 1.6c2.6 3.6 3.4 6.4 0 9.8-3.4-3.4-2.6-6.2 0-9.8z'/><path d='M12 1.6c2.6 3.6 3.4 6.4 0 9.8-3.4-3.4-2.6-6.2 0-9.8z' transform='rotate(45 12 12)'/><path d='M12 1.6c2.6 3.6 3.4 6.4 0 9.8-3.4-3.4-2.6-6.2 0-9.8z' transform='rotate(90 12 12)'/><path d='M12 1.6c2.6 3.6 3.4 6.4 0 9.8-3.4-3.4-2.6-6.2 0-9.8z' transform='rotate(135 12 12)'/><path d='M12 1.6c2.6 3.6 3.4 6.4 0 9.8-3.4-3.4-2.6-6.2 0-9.8z' transform='rotate(180 12 12)'/><path d='M12 1.6c2.6 3.6 3.4 6.4 0 9.8-3.4-3.4-2.6-6.2 0-9.8z' transform='rotate(225 12 12)'/><path d='M12 1.6c2.6 3.6 3.4 6.4 0 9.8-3.4-3.4-2.6-6.2 0-9.8z' transform='rotate(270 12 12)'/><path d='M12 1.6c2.6 3.6 3.4 6.4 0 9.8-3.4-3.4-2.6-6.2 0-9.8z' transform='rotate(315 12 12)'/><circle cx='12' cy='12' r='2.2'/></g></svg>");
+  aspect-ratio: 1;
+}
+
+.ornament-cloud {
+  --mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 28 14'><path fill='black' d='M2 13c0-4 3-5 4.5-3C7.5 5 13 4 15 8c2.5-2.5 6-1 6 2 3-1 5 .5 5 3z'/></svg>");
+  aspect-ratio: 2;
+}
+
+.ornament-mark {
+  --mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><circle cx='12' cy='12' r='8' fill='none' stroke='black' stroke-width='2.5'/></svg>");
+  aspect-ratio: 1;
+}
+
+.ornament-mark-broken {
+  --mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g fill='none' stroke='black' stroke-width='2.5'><path d='M12 4a8 8 0 0 1 5.7 13.7'/><path d='M12 20A8 8 0 0 1 6.3 6.3'/></g><path d='M19 3 5 21' stroke='black' stroke-width='2.5'/></svg>");
+  aspect-ratio: 1;
+}
+
+:where(.ornament-rosette, .ornament-lotus, .ornament-cloud, .ornament-mark, .ornament-mark-broken) {
+  -webkit-mask-image: var(--mask);
+  mask-image: var(--mask);
+}
+
+/* A dividing rule carrying a repeating squared-spiral fret instead of a line.
+   The tile is deliberately wide and open: drawn tighter the spiral closes up at
+   rule size and reads as a row of small boxes rather than as a meander. */
+.rule-fret {
+  height: 16px;
+  border: 0;
+  background-color: var(--ornament);
+  opacity: 0.7;
+  -webkit-mask-image: var(--fret);
+  mask-image: var(--fret);
+  -webkit-mask-repeat: repeat-x;
+  mask-repeat: repeat-x;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  -webkit-mask-size: auto 16px;
+  mask-size: auto 16px;
+  --fret: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 34 16'><g fill='none' stroke='black' stroke-width='1.7' stroke-linecap='square'><path d='M0 15h34'/><path d='M5 15V4h22v7H13v-3.5h7'/></g></svg>");
+}
+
+/* ---- Reveal -------------------------------------------------------------
+   Entrance transition applied by js/lib/reveal.js. Gated on (scripting:
+   enabled) so that with JavaScript off the content is simply present rather
+   than left at opacity 0 forever -- the failure mode a .reveal class would
+   otherwise create is a blank page. */
+
+@media (scripting: enabled) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition: opacity 700ms ease, transform 700ms ease;
+  }
+  .reveal.is-visible { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
