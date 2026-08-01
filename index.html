@@ -15,9 +15,25 @@
 
 <div id="year-indicator" aria-live="polite" aria-label="Current year in view">618</div>
 
+<nav class="spine-rail" aria-label="Timeline">
+  <ol>
+    <li><a href="#year-618" data-year="618"><span class="ornament ornament-mark" aria-hidden="true"></span><span class="rail-year">618</span></a></li>
+    <li><a href="#year-626" data-year="626"><span class="ornament ornament-mark" aria-hidden="true"></span><span class="rail-year">626</span></a></li>
+    <li><a href="#year-690" data-year="690"><span class="ornament ornament-mark" aria-hidden="true"></span><span class="rail-year">690</span></a></li>
+    <li><a href="#year-713" data-year="713"><span class="ornament ornament-mark" aria-hidden="true"></span><span class="rail-year">713</span></a></li>
+    <li><a href="#year-755" data-year="755"><span class="ornament ornament-mark-broken" aria-hidden="true"></span><span class="rail-year">755</span></a></li>
+    <li><a href="#year-780" data-year="780"><span class="ornament ornament-mark" aria-hidden="true"></span><span class="rail-year">780</span></a></li>
+    <li><a href="#year-907" data-year="907"><span class="ornament ornament-mark" aria-hidden="true"></span><span class="rail-year">907</span></a></li>
+  </ol>
+</nav>
+
 <header class="wrap spine-hero">
-  <h1>Tang</h1>
+  <h1 class="spine-title">
+    <span class="spine-glyph" lang="zh-Hans">唐</span>
+    <span class="spine-latin">Tang</span>
+  </h1>
   <p class="spine-dates">618 – 907</p>
+  <hr class="rule-fret spine-hero-rule">
   <p class="prose">The Tang looked outward with a confidence that the rebellion of 755
   ended and never returned. That break is visible in the objects themselves — in what
   potters stopped making, and in how poets started sounding. This is a walk down the
@@ -27,16 +43,39 @@
 <nav class="wrap room-index" aria-label="Rooms">
   <h2>Four rooms</h2>
   <ul>
-    <li><a href="rooms/changan.html">Chang'an and the Silk Road</a> — a schematic map of what arrived, and from where</li>
-    <li><a href="rooms/ceramics.html">Ceramics</a> — sancai glaze, close up and annotated</li>
-    <li><a href="rooms/dunhuang.html">Dunhuang</a> — cave murals and their registers</li>
-    <li><a href="rooms/poetry.html">Poetry</a> — read in the original, with gloss</li>
+    <li class="room-card">
+      <div class="room-card-plate">
+        <img src="assets/img/foreign-groom.jpg" width="716" height="1582" loading="lazy" decoding="async"
+          alt="Unglazed earthenware figure of a groom in a belted robe and soft folded cap, one fist raised around a rein that has not survived.">
+      </div>
+      <p><a href="rooms/changan.html">Chang'an and the Silk Road</a> — a schematic map of what arrived, and from where</p>
+    </li>
+    <li class="room-card">
+      <div class="room-card-plate">
+        <img src="assets/img/sancai-ewer.jpg" width="1280" height="1437" loading="lazy" decoding="async"
+          alt="Sancai ewer with a lobed mouth and a dragon-head handle, glazed in bands of amber, green, and cream that have run downward in the kiln.">
+      </div>
+      <p><a href="rooms/ceramics.html">Ceramics</a> — sancai glaze, close up and annotated</p>
+    </li>
+    <li class="room-card">
+      <div class="room-card-plate">
+        <img src="assets/img/dunhuang-mural.png" width="640" height="397" loading="lazy" decoding="async"
+          alt="Detail of a Mogao Cave 156 wall painting: a figure beside a two-wheeled cart on a flat turquoise ground crossed by pale register bands.">
+      </div>
+      <p><a href="rooms/dunhuang.html">Dunhuang</a> — cave murals and their registers</p>
+    </li>
+    <li class="room-card room-card-glyph">
+      <div class="room-card-plate">
+        <span class="room-glyph" lang="zh-Hans" aria-hidden="true">詩</span>
+      </div>
+      <p><a href="rooms/poetry.html">Poetry</a> — read in the original, with gloss</p>
+    </li>
   </ul>
 </nav>
 
 <main id="main" class="spine">
 
-  <section class="era-section" data-era="early" data-year="618">
+  <section class="era-section" id="year-618" data-era="early" data-year="618">
     <div class="wrap prose">
       <p class="section-year">618</p>
       <h2>Founding</h2>
@@ -46,9 +85,16 @@
       thinner glazes, a Buddhist sculptural idiom inherited rather than reinvented. What
       changed first was reach, not style.</p>
     </div>
+    <div class="wrap">
+      <div class="empty-plate reveal">
+        <span class="ornament ornament-rosette empty-plate-mark" aria-hidden="true"></span>
+        <p class="empty-plate-note">No Tang object in this collection dates from the
+        founding decade. The record of early Tang art here is a written one.</p>
+      </div>
+    </div>
   </section>
 
-  <section class="era-section" data-era="early" data-year="626">
+  <section class="era-section" id="year-626" data-era="early" data-year="626">
     <div class="wrap prose">
       <p class="section-year">626</p>
       <h2>Taizong and the opening of the routes</h2>
@@ -57,11 +103,11 @@
       genuinely continuous overland trade system. Foreign goods, foreign musicians, and
       foreign religions arrived together, and Tang artists began depicting the people who
       brought them.</p>
-      <p><a href="rooms/changan.html">See the routes →</a></p>
+      <p class="crosslink reveal"><a href="rooms/changan.html">See the routes →</a></p>
     </div>
   </section>
 
-  <section class="era-section" data-era="high" data-year="690">
+  <section class="era-section" id="year-690" data-era="high" data-year="690">
     <div class="wrap prose">
       <p class="section-year">690</p>
       <h2>Wu Zetian</h2>
@@ -70,9 +116,19 @@
       colossal sculptures at Longmen belong to this program. Ceramic figures grow fuller,
       more confident, and more theatrical in the same decades.</p>
     </div>
+    <div class="wrap">
+      <figure class="plate plate-figure single-plate reveal">
+        <div class="plate-frame">
+          <img src="assets/img/tang-bodhisattva.jpg" width="1920" height="2560" loading="lazy" decoding="async"
+            alt="Headless marble bodhisattva standing on a lotus pedestal, a beaded collar and long jewel chain across the chest, a wide sash knotted at the hips.">
+        </div>
+        <figcaption class="plate-caption"><strong>Bodhisattva, Hebei province</strong> ·
+        Tang dynasty · Cleveland Museum of Art, 1929.981 · CC0</figcaption>
+      </figure>
+    </div>
   </section>
 
-  <section class="era-section" data-era="high" data-year="713">
+  <section class="era-section" id="year-713" data-era="high" data-year="713">
     <div class="wrap prose">
       <p class="section-year">713</p>
       <h2>The Xuanzong court</h2>
@@ -83,23 +139,66 @@
       The confidence is legible in the objects: they are made to be looked at.</p>
       <p><a href="rooms/ceramics.html">See the ceramics →</a></p>
     </div>
-  </section>
 
-  <section class="era-section rupture" data-era="rupture" data-year="755">
-    <div class="wrap prose">
-      <p class="section-year">755</p>
-      <h2>The An Lushan rebellion</h2>
-      <p>An Lushan's revolt drove the emperor from Chang'an and began eight years of war
-      that the dynasty survived without ever recovering. Census records collapse; the
-      Tarim garrisons are abandoned; overland trade contracts sharply.</p>
-      <p>The rebellion is the hinge of this site because it is legible in the art itself.
-      Large sancai tomb assemblages effectively stop, and the poetry written after it
-      sounds nothing like the poetry written before.</p>
-      <p><a href="rooms/poetry.html">Read what came after →</a></p>
+    <div class="plate plate-band">
+      <div class="wrap crowd">
+        <figure class="plate-figure crowd-wide reveal">
+          <div class="plate-frame">
+            <img src="assets/img/sancai-horse.jpg" width="1920" height="1367" loading="lazy" decoding="async"
+              alt="Caparisoned sancai horse on its original slab, harnessed and saddled, glazed in streaming amber and green with a hogged mane.">
+          </div>
+          <figcaption class="plate-caption"><strong>Caparisoned horse with sancai glaze</strong> ·
+          675–750 · Portland Art Museum · Public domain</figcaption>
+        </figure>
+
+        <figure class="plate-figure crowd-tall reveal">
+          <div class="plate-frame">
+            <img src="assets/img/foreign-groom.jpg" width="716" height="1582" loading="lazy" decoding="async"
+              alt="Unglazed earthenware groom on an integral plinth, robe belted and pulled open, one fist closed around a rein now lost.">
+          </div>
+          <figcaption class="plate-caption"><strong>Figure of a groom</strong> ·
+          Late 7th–first half of 8th century · The Metropolitan Museum of Art · Public domain</figcaption>
+        </figure>
+
+        <figure class="plate-figure crowd-mid reveal">
+          <div class="plate-frame">
+            <img src="assets/img/sancai-ewer.jpg" width="1280" height="1437" loading="lazy" decoding="async"
+              alt="Sancai ewer on a splayed foot, its trefoil mouth pinched into lobes and an animal-head handle looped from rim to shoulder.">
+          </div>
+          <figcaption class="plate-caption"><strong>Sancai ewer with dragon-head handle</strong> ·
+          Tang dynasty · Cleveland Museum of Art, 1987.148 · CC0</figcaption>
+        </figure>
+
+        <figure class="plate-figure crowd-small reveal">
+          <div class="plate-frame">
+            <img src="assets/img/sancai-camel.jpg" width="1920" height="1280" loading="lazy" decoding="async"
+              alt="Bactrian camel kneeling with a rider astride the saddle pack, flanks under a running amber glaze, neck and forelegs left unglazed.">
+          </div>
+          <figcaption class="plate-caption"><strong>Sancai camel with rider</strong> ·
+          Tang dynasty · Wikimedia Commons · CC0</figcaption>
+        </figure>
+      </div>
     </div>
   </section>
 
-  <section class="era-section" data-era="late" data-year="780">
+  <section class="era-section rupture" id="year-755" data-era="rupture" data-year="755">
+    <div class="plate rupture-void">
+      <div class="wrap prose">
+        <span class="ornament ornament-mark-broken void-mark reveal" aria-hidden="true"></span>
+        <p class="section-year">755</p>
+        <h2>The An Lushan rebellion</h2>
+        <p>An Lushan's revolt drove the emperor from Chang'an and began eight years of war
+        that the dynasty survived without ever recovering. Census records collapse; the
+        Tarim garrisons are abandoned; overland trade contracts sharply.</p>
+        <p>The rebellion is the hinge of this site because it is legible in the art itself.
+        Large sancai tomb assemblages effectively stop, and the poetry written after it
+        sounds nothing like the poetry written before.</p>
+        <p class="crosslink void-crosslink"><a href="rooms/poetry.html">Read what came after →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="era-section" id="year-780" data-era="late" data-year="780">
     <div class="wrap prose">
       <p class="section-year">780</p>
       <h2>After the war</h2>
@@ -110,9 +209,27 @@
       directly to Song taste.</p>
       <p><a href="rooms/dunhuang.html">See where patronage continued →</a></p>
     </div>
+    <div class="wrap sparse">
+      <figure class="plate plate-figure reveal">
+        <div class="plate-frame">
+          <img src="assets/img/yue-celadon.jpg" width="1920" height="1280" loading="lazy" decoding="async"
+            alt="Small hemispherical Yue bowl under an even grey-green glaze, three dark splashes haloed in the well and a run of dashes inside the rim.">
+        </div>
+        <figcaption class="plate-caption"><strong>Celadon bowl, Yue kilns</strong> ·
+        Tang dynasty · Wikimedia Commons · CC0</figcaption>
+      </figure>
+      <figure class="plate plate-figure reveal">
+        <div class="plate-frame">
+          <img src="assets/img/celadon-bottle.jpg" width="1920" height="2880" loading="lazy" decoding="async"
+            alt="Barrel-bodied celadon bottle with a short neck and everted lip, pierced lugs at shoulder and base, undecorated but for its throwing rings.">
+        </div>
+        <figcaption class="plate-caption"><strong>Celadon bottle with lug handles</strong> ·
+        Tang dynasty · Wikimedia Commons · CC0</figcaption>
+      </figure>
+    </div>
   </section>
 
-  <section class="era-section" data-era="late" data-year="907">
+  <section class="era-section" id="year-907" data-era="late" data-year="907">
     <div class="wrap prose">
       <p class="section-year">907</p>
       <h2>End</h2>
@@ -120,6 +237,13 @@
       Dynasties and Ten Kingdoms. The dynasty's reputation, however, was largely built
       afterward, by writers looking back at the Xuanzong decades across the break of 755.
       Much of what we call Tang art is read through that nostalgia.</p>
+    </div>
+    <div class="wrap">
+      <p class="closing-ornament reveal" aria-hidden="true">
+        <span class="ornament ornament-lotus"></span>
+        <span class="ornament ornament-lotus"></span>
+        <span class="ornament ornament-lotus"></span>
+      </p>
     </div>
   </section>
 

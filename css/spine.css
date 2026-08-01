@@ -1,3 +1,10 @@
+/* .bleed widens to 100vw. On platforms with a classic overlay-less scrollbar,
+   100vw counts the scrollbar gutter, so a full-bleed band overhangs the
+   viewport by its width and produces a horizontal scrollbar. Clipping the root
+   removes that overhang; `clip` rather than `hidden` so no scroll container is
+   created and position: sticky keeps working. */
+html { overflow-x: clip; }
+
 .skip {
   position: absolute; left: var(--space-s); top: var(--space-s);
   background: var(--paper-raised); padding: var(--space-2xs) var(--space-s);
@@ -5,19 +12,154 @@
 }
 .skip:focus { transform: none; }
 
+/* ---- Hero ---------------------------------------------------------------- */
+
 .spine-hero { padding-block: var(--space-2xl) var(--space-l); }
-.spine-hero h1 { font-size: clamp(4rem, 12vw, 9rem); letter-spacing: -0.02em; }
+
+.spine-title {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: clamp(var(--space-s), 3vw, var(--space-l));
+  font-size: inherit;
+}
+.spine-glyph {
+  font-size: var(--size-step-4);
+  line-height: 0.82;
+  /* The glyph is a mass, not a word: optical alignment beats the em box. */
+  margin-block-start: -0.06em;
+}
+.spine-latin {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: var(--size-step-2);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  border-inline-start: 1px solid var(--rule);
+  padding-inline-start: clamp(var(--space-s), 3vw, var(--space-l));
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
 .spine-dates {
   font-family: var(--font-sans); color: var(--muted);
-  letter-spacing: 0.25em; margin-block: var(--space-2xs) var(--space-m);
+  letter-spacing: 0.25em; margin-block: var(--space-s) var(--space-m);
+}
+.spine-hero-rule { margin-block-end: var(--space-m); }
+
+/* ---- Timeline rail -------------------------------------------------------
+   Fixed rather than in-flow so it never enters the layout of the sections and
+   cannot disturb the full-bleed bands, which measure themselves against the
+   viewport. Below the breakpoint the rail is dropped entirely and
+   #year-indicator carries the current year instead. */
+
+.spine-rail { display: none; }
+
+@media (min-width: 88rem) {
+  .spine-rail {
+    display: block;
+    position: fixed;
+    inset-inline-start: var(--space-m);
+    inset-block-start: 50%;
+    translate: 0 -50%;
+    z-index: 10;
+  }
+  .spine-rail ol {
+    list-style: none; padding: 0; margin: 0;
+    display: grid; gap: var(--space-m);
+    position: relative;
+  }
+  /* Hairline joining the marks into one continuous rail. */
+  .spine-rail ol::before {
+    content: "";
+    position: absolute;
+    inset-block: 0.6rem;
+    inset-inline-start: 0.34rem;
+    width: 1px;
+    background: var(--rule);
+  }
+  .spine-rail a {
+    display: grid;
+    grid-template-columns: 0.75rem auto;
+    align-items: center;
+    gap: var(--space-2xs);
+    text-decoration: none;
+    font-family: var(--font-sans);
+    font-size: var(--size-step--1);
+    letter-spacing: 0.18em;
+    color: var(--muted);
+  }
+  .spine-rail .ornament {
+    width: 0.75rem;
+    opacity: 0.55;
+    transition: opacity var(--era-transition), scale var(--era-transition);
+  }
+  /* The years are set at full --muted rather than faded back, because a
+     dimmed label here would fall under 4.5:1. The current year is
+     distinguished by colour and by the size of its mark instead. */
+  .spine-rail a:hover { color: var(--ink); }
+  .spine-rail a.is-current { color: var(--accent); }
+  .spine-rail a.is-current .ornament { --ornament: var(--accent); opacity: 1; scale: 1.35; }
+
+  /* The rail is fixed, so over a full-bleed dark band its background is the
+     band rather than the paper. --muted on --plate is 2.2:1; these tokens are
+     the same hierarchy re-struck for the dark ground. js/spine.js sets the
+     class from what is actually behind the rail, not from the current era --
+     the 713 section is paper at the top and a dark band lower down. */
+  .spine-rail {
+    transition: none;
+  }
+  .spine-rail.is-over-plate a { color: var(--plate-muted); }
+  .spine-rail.is-over-plate a:hover { color: var(--plate-ink); }
+  .spine-rail.is-over-plate a.is-current { color: var(--plate-ink); }
+  .spine-rail.is-over-plate a.is-current .ornament { --ornament: var(--plate-ink); }
+  .spine-rail.is-over-plate .ornament { --ornament: var(--plate-muted); }
+  .spine-rail.is-over-plate ol::before { background: var(--plate-edge); }
 }
 
-.room-index { padding-block: var(--space-l); border-block: 1px solid var(--rule); }
-.room-index ul { list-style: none; padding: 0; }
-.room-index li + li { margin-block-start: var(--space-xs); }
-.room-index a { font-size: var(--size-step-1); }
+/* ---- Room index ---------------------------------------------------------- */
+
+.room-index { padding-block: var(--space-l) var(--space-xl); border-block: 1px solid var(--rule); }
+.room-index ul {
+  list-style: none; padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--space-m);
+  margin-block-start: var(--space-m);
+}
+.room-index a { font-size: var(--size-step-1); text-decoration-thickness: 1px; }
+
+.room-card { position: relative; }
+/* One link per card, stretched over the whole card. The image is therefore not
+   a second link to the same place, which would double every room in a screen
+   reader's link list. */
+.room-card a::after { content: ""; position: absolute; inset: 0; }
+
+.room-card-plate {
+  background: var(--plate);
+  border: 1px solid var(--plate-edge);
+  aspect-ratio: 3 / 4;
+  padding: var(--space-2xs);
+  margin-block-end: var(--space-xs);
+  transition: background-color var(--era-transition);
+}
+/* contain, not cover: these objects run from a 0.45 portrait figure to a wide
+   mural strip, and cropping any of them to a common box removes the thing the
+   card is there to show. Letterboxing on the plate ground reads as mounting. */
+.room-card-plate img { width: 100%; height: 100%; object-fit: contain; }
+
+.room-card-glyph .room-card-plate { display: grid; place-items: center; }
+.room-glyph {
+  font-size: var(--size-step-4);
+  line-height: 1;
+  color: var(--plate-ink);
+  opacity: 0.85;
+}
+
+/* ---- Sections ------------------------------------------------------------ */
 
 .era-section { padding-block: var(--space-2xl); border-block-end: 1px solid var(--rule); }
+.era-section { scroll-margin-block-start: var(--space-m); }
 
 /* index.html puts .wrap and .prose on the SAME element in each section. .wrap
    centres with auto margins and .prose narrows to the measure, so together they
@@ -32,23 +174,169 @@
   letter-spacing: 0.2em; color: var(--accent); margin-block-end: var(--space-2xs);
 }
 
-/* The rupture is the one place both registers are visible at once. */
-.era-section.rupture {
-  background:
-    linear-gradient(to bottom, var(--paper-raised), var(--paper));
-  border-block-start: 3px solid var(--accent);
+/* Everything after the reading column in a section is staging. */
+.era-section > .wrap + .wrap,
+.era-section > .wrap + .plate-band { margin-block-start: var(--space-xl); }
+
+.crosslink {
+  font-family: var(--font-sans);
+  font-size: var(--size-step--1);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-inline-start: 2px solid var(--ornament);
+  padding-inline-start: var(--space-s);
+}
+.crosslink a { text-decoration: none; }
+.crosslink a:hover { text-decoration: underline; }
+
+/* ---- 618 and 907: the sections with no object ---------------------------- */
+
+.empty-plate {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-m);
+  padding-block: var(--space-xl);
+  border-block: 1px solid var(--rule);
+}
+.empty-plate-mark { width: clamp(3rem, 8vw, 5rem); opacity: 0.5; }
+.empty-plate-note {
+  max-width: 34ch;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: var(--size-step--1);
+  color: var(--muted);
 }
 
+.closing-ornament {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-l);
+}
+.closing-ornament .ornament { width: 1.75rem; }
+.closing-ornament .ornament:nth-child(1) { opacity: 0.45; }
+.closing-ornament .ornament:nth-child(2) { opacity: 0.25; width: 1.25rem; }
+.closing-ornament .ornament:nth-child(3) { opacity: 0.1; width: 0.85rem; }
+
+/* ---- 690: one plate ------------------------------------------------------ */
+
+.single-plate { max-width: 34rem; margin-inline: auto; }
+
+/* ---- 713: the crowded gallery -------------------------------------------- */
+
+.plate-band { padding-inline: 0; padding-block: clamp(var(--space-l), 6vw, var(--space-2xl)); }
+
+.crowd {
+  display: grid;
+  gap: clamp(var(--space-s), 2.5vw, var(--space-l));
+}
+
+@media (min-width: 40rem) {
+  .crowd { grid-template-columns: repeat(2, 1fr); align-items: start; }
+}
+
+/* Twelve columns so the four objects can sit at four different scales at once.
+   The groom is the only tall narrow object, so it takes a full-height column
+   beside the two shorter rows rather than forcing everything to one height.
+
+   Each frame is given its own aspect rather than being left to the photograph's.
+   Left intrinsic, a landscape shot in a narrow column collapses to a sliver
+   while the tall groom runs to twice the height of everything beside it, and the
+   row reads as broken rather than crowded. The frames are proportioned close to
+   each object so the mat showing around any one of them stays slight. */
+@media (min-width: 64rem) {
+  .crowd { grid-template-columns: repeat(12, 1fr); }
+  .crowd-wide  { grid-column: 1 / 8;   grid-row: 1; --frame-aspect: 7 / 5; }
+  .crowd-tall  { grid-column: 8 / 13;  grid-row: 1 / span 2; }
+  .crowd-mid   { grid-column: 1 / 5;   grid-row: 2; --frame-aspect: 8 / 9; }
+  .crowd-small { grid-column: 5 / 8;   grid-row: 2; --frame-aspect: 3 / 2; align-self: end; }
+
+  .crowd .plate-frame { aspect-ratio: var(--frame-aspect, auto); }
+  .crowd .plate-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* The groom spans both rows, so it takes its height from the rows rather than
+     from an aspect of its own -- an aspect here would fight the span and leave
+     the column short or overflowing. */
+  .crowd-tall { align-self: stretch; grid-template-rows: 1fr auto; }
+  .crowd-tall .plate-frame { aspect-ratio: auto; min-height: 0; }
+}
+
+/* ---- 755: the break ------------------------------------------------------
+   The one section with no photograph and no paper. Full viewport height so the
+   reader arrives in it rather than scrolling past it, and the prose is the only
+   thing in the frame. */
+
+.era-section.rupture { padding-block: 0; border-block-end: 0; }
+
+.rupture-void {
+  padding-inline: 0;
+  padding-block: var(--space-2xl);
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  box-shadow: none;
+}
+.rupture-void .section-year { color: var(--plate-muted); }
+.rupture-void h2 { font-size: var(--size-step-3); }
+.void-mark {
+  width: clamp(2.5rem, 6vw, 4rem);
+  opacity: 0.6;
+  margin-block-end: var(--space-m);
+}
+.void-crosslink { border-inline-start-color: var(--plate-muted); }
+
+/* ---- 780: thin and cool again -------------------------------------------- */
+
+.sparse { display: grid; gap: var(--space-xl); }
+
+@media (min-width: 52rem) {
+  .sparse {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(var(--space-l), 8vw, 10rem);
+    align-items: start;
+  }
+  /* Dropping the second plate breaks the pair out of a symmetrical row, which
+     is what makes this read as sparser than 713 rather than merely smaller. */
+  .sparse > :nth-child(2) { margin-block-start: var(--space-2xl); }
+}
+
+/* ---- Chrome -------------------------------------------------------------- */
+
+/* Pinned to the bottom corner rather than the top one. Without the rail the
+   reading column runs the full width of the viewport, so a fixed chip covers
+   text wherever it sits; the bottom corner is the only place a paragraph
+   rarely reaches, and it reads as a page number in the process. */
 #year-indicator {
-  position: fixed; inset-block-start: var(--space-s); inset-inline-end: var(--space-s);
-  font-family: var(--font-sans); font-size: var(--size-step-1);
+  position: fixed; inset-block-end: var(--space-s); inset-inline-end: var(--space-s);
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  letter-spacing: 0.18em;
   color: var(--muted); background: var(--paper-raised);
   padding: var(--space-3xs) var(--space-2xs); border: 1px solid var(--rule);
   z-index: 10;
-  transition: color var(--era-transition);
+  transition: color var(--era-transition), background-color var(--era-transition);
+}
+
+/* Once the rail is showing it is the visible current-year marker, so the chip
+   is hidden -- but only visually. It stays in the accessibility tree, because
+   it is the live region that announces the year change. Declared after the
+   rule above so it wins on source order at equal specificity. */
+@media (min-width: 88rem) {
+  #year-indicator {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; overflow: hidden; clip-path: inset(50%);
+    white-space: nowrap; border: 0;
+  }
 }
 
 .spine-footer {
   padding-block: var(--space-l);
   font-family: var(--font-sans); font-size: var(--size-step--1); color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spine-rail .ornament { transition: none; }
 }
