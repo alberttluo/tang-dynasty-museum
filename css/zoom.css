@@ -13,20 +13,46 @@
   border: 1px solid var(--plate-edge); cursor: pointer;
   transition: background-color 160ms ease, border-color 160ms ease;
 }
-.zoom-controls button:hover {
+.zoom-controls button:hover:not(:disabled) {
   background: var(--plate-mat);
   border-color: var(--plate-muted);
 }
+.zoom-controls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
 
+/* The object is fitted inside the viewport rather than set to its width. Sized
+   to the width, a portrait object runs past the height cap and is shown cropped
+   -- the tall groom rendered at less than a third of its height -- and a file
+   narrower than the viewport is upscaled past 1:1, which looks soft and leaves
+   no headroom to zoom into.
+
+   width/height auto with the two maxima is the fit: the image scales down to
+   whichever limit binds and is never scaled up, because its natural size is the
+   starting point.
+
+   The box takes its height from the fitted image rather than being given one.
+   Fixing the height and capping the image to the same value double-counts this
+   frame's padding and border, and the image overhangs by exactly that much. */
 .zoom-viewport {
+  --viewport-height: min(80vh, 38rem);
   position: relative; overflow: hidden;
   touch-action: none; cursor: grab;
-  max-height: 80vh;
+  display: grid;
+  place-items: center;
 }
 .zoom-viewport.is-grabbing { cursor: grabbing; }
 
+/* The stage shrink-wraps the image so the hotspots' percentage offsets stay
+   measured against the object and not against any letterboxing beside it. */
 .zoom-stage { position: relative; transform-origin: center center; }
-.zoom-stage img { width: 100%; height: auto; }
+.zoom-stage img {
+  display: block;
+  width: auto; height: auto;
+  max-width: 100%;
+  max-height: var(--viewport-height);
+}
 
 /* A hollow double-stroked ring: light stroke against dark passages of the
    photograph, dark stroke against light ones, and an open centre so the marker

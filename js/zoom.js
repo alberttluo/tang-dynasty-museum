@@ -50,9 +50,20 @@ function renderObject(record, panzoomFactory, position) {
 
   const viewport = el("div", { class: "zoom-viewport plate-frame" });
   const stage = el("div", { class: "zoom-stage" });
+  // Fitting the image with width/height auto means it has no intrinsic size
+  // until the file arrives, so without these the box collapses to nothing and
+  // the page reflows as each object loads. The attributes give it the recorded
+  // proportions at a size past any cap, so the reserved box is already the
+  // fitted box for every file larger than the frame.
+  const [aspectWidth, aspectHeight] = String(record.image.aspect ?? "1/1")
+    .split("/").map((part) => parseFloat(part));
+  const proportioned = Number.isFinite(aspectWidth) && Number.isFinite(aspectHeight);
+
   const image = el("img", {
     src: record.image.src,
     alt: `${record.title}. ${record.summary ?? ""}`,
+    width: proportioned ? Math.round(aspectWidth * 10) : null,
+    height: proportioned ? Math.round(aspectHeight * 10) : null,
     style: `aspect-ratio: ${record.image.aspect ?? "1/1"}`,
     decoding: "async",
     // Only the first object in a room is above the fold; the rest are large
@@ -83,28 +94,46 @@ function renderObject(record, panzoomFactory, position) {
   viewport.append(stage);
 
   const controls = el("div", { class: "zoom-controls" });
-  let pz = panzoomFactory(viewport, stage);
+  const zoomInButton = el("button", { type: "button", text: "Zoom in",
+    onclick: () => pz.zoomBy(0.25) });
+  const zoomOutButton = el("button", { type: "button", text: "Zoom out",
+    onclick: () => pz.zoomBy(-0.25) });
+  const resetButton = el("button", { type: "button", text: "Reset view",
+    onclick: () => pz.reset() });
+
+  // A control that silently does nothing reads as broken. Some files are
+  // smaller than the space they are shown in and have no room to zoom at all,
+  // and panning means nothing until the object overhangs the viewport.
+  function syncControls(state) {
+    zoomInButton.disabled = !state.canZoomIn;
+    zoomOutButton.disabled = !state.canZoomOut;
+    resetButton.disabled = state.scale === 1 && state.x === 0 && state.y === 0;
+  }
+
+  let pz = panzoomFactory(viewport, stage, { onChange: syncControls });
+  let ceiling = 0;
 
   // Past 1:1 there is no more detail in the file, only interpolation, so the
-  // ceiling is the image's own resolution. It is only knowable once the file
-  // has loaded, and the controller takes its limits at construction, so the
-  // controller is rebuilt then. Every caller reads `pz` through a closure, so
-  // the swap is invisible to them.
-  image.addEventListener("load", () => {
+  // ceiling is the image's own resolution over the size it is displayed at.
+  // Both halves move: the file arrives asynchronously, and the displayed size
+  // changes with the viewport. A ResizeObserver covers the cached image that
+  // never fires load, the lazy image that loads on scroll, and the window
+  // resize that would otherwise leave the ceiling describing a stale width.
+  function refreshZoomCeiling() {
     if (!image.naturalWidth || !image.clientWidth) return;
+    const next = Math.max(1, image.naturalWidth / image.clientWidth);
+    if (Math.abs(next - ceiling) < 0.01) return;
+    ceiling = next;
     pz.destroy();
-    pz = panzoomFactory(viewport, stage, {
-      maxScale: Math.max(1, image.naturalWidth / image.clientWidth),
-    });
-  });
+    pz = panzoomFactory(viewport, stage, { maxScale: ceiling, onChange: syncControls });
+  }
 
-  controls.append(
-    el("button", { type: "button", text: "Zoom in",
-      onclick: () => pz.zoomBy(0.25) }),
-    el("button", { type: "button", text: "Zoom out",
-      onclick: () => pz.zoomBy(-0.25) }),
-    el("button", { type: "button", text: "Reset view", onclick: () => pz.reset() })
-  );
+  image.addEventListener("load", refreshZoomCeiling);
+  if (typeof ResizeObserver === "function") {
+    new ResizeObserver(refreshZoomCeiling).observe(image);
+  }
+
+  controls.append(zoomInButton, zoomOutButton, resetButton);
 
   // The museum photographs carry their studio backgrounds unaltered, so the
   // viewport is matted onto a dark plate rather than sitting on the paper.
@@ -112,29 +141,42 @@ function renderObject(record, panzoomFactory, position) {
     controls,
     viewport,
     el("p", { class: "plate-caption",
-      text: "Drag to pan. Arrow keys pan, plus and minus zoom, Esc resets the view. Numbered rings mark the annotated details." }),
+      text: "Plus and minus zoom, Esc resets the view. Once the object is larger than its frame, drag or use the arrow keys to pan. Numbered rings mark the annotated details." }),
   ]);
 
   viewport.setAttribute("tabindex", "0");
   viewport.setAttribute("role", "group");
   viewport.setAttribute("aria-label",
-    `${record.title}, zoomable. Arrow keys pan, plus and minus zoom.`);
+    `${record.title}, zoomable. Plus and minus zoom; arrow keys pan once zoomed in.`);
   viewport.addEventListener("keydown", (event) => {
     const pan = 40;
-    const moves = {
-      ArrowUp: () => pz.panBy(0, pan),
-      ArrowDown: () => pz.panBy(0, -pan),
-      ArrowLeft: () => pz.panBy(pan, 0),
-      ArrowRight: () => pz.panBy(-pan, 0),
-      "+": () => pz.zoomBy(0.25),
-      "=": () => pz.zoomBy(0.25),
-      "-": () => pz.zoomBy(-0.25),
-      Escape: () => { pz.reset(); closePanel(panel); },
+    const pans = {
+      ArrowUp: [0, pan],
+      ArrowDown: [0, -pan],
+      ArrowLeft: [pan, 0],
+      ArrowRight: [-pan, 0],
     };
-    const move = moves[event.key];
-    if (!move) return;
-    event.preventDefault();
-    move();
+    const zooms = { "+": 0.25, "=": 0.25, "-": -0.25 };
+
+    if (event.key in pans) {
+      // With the whole object already in frame there is nothing to pan to.
+      // Swallowing the key anyway would strand a keyboard reader inside the
+      // viewport with the page unable to scroll.
+      if (!pz.getState().canPan) return;
+      event.preventDefault();
+      pz.panBy(...pans[event.key]);
+      return;
+    }
+    if (event.key in zooms) {
+      event.preventDefault();
+      pz.zoomBy(zooms[event.key]);
+      return;
+    }
+    if (event.key === "Escape") {
+      event.preventDefault();
+      pz.reset();
+      closePanel(panel);
+    }
   });
 
   // Every hotspot also appears as plain text, so the content is reachable

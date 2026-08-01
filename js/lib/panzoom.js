@@ -1,7 +1,7 @@
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
 export function createPanZoom(viewport, target, options = {}) {
-  const { minScale = 1, maxScale = 4, step = 0.25 } = options;
+  const { minScale = 1, maxScale = 4, step = 0.25, onChange = () => {} } = options;
   const state = { scale: 1, x: 0, y: 0 };
   const pointers = new Map();
   let lastPinchDistance = 0;
@@ -9,15 +9,26 @@ export function createPanZoom(viewport, target, options = {}) {
   function apply() {
     target.style.transform =
       `translate(${state.x}px, ${state.y}px) scale(${state.scale})`;
+    onChange({ ...state, canZoomIn: canZoomIn(), canZoomOut: canZoomOut(), canPan: canPan() });
   }
 
   function constrain() {
-    // At scale 1 the image is centered; beyond that, limit panning to the
-    // overflow so the reader can never drag the object out of view.
-    const overflowX = (viewport.clientWidth * (state.scale - 1)) / 2;
-    const overflowY = (viewport.clientHeight * (state.scale - 1)) / 2;
+    // Panning is limited to however much the scaled content actually overhangs
+    // the viewport. Deriving the overhang from the viewport's own size instead
+    // assumes the content exactly fills it at scale 1, and any content that
+    // does not -- anything fitted, letterboxed, or overflowing -- then gets
+    // clamped to a range that does not describe it.
+    const overflowX = Math.max(0, (target.offsetWidth * state.scale - viewport.clientWidth) / 2);
+    const overflowY = Math.max(0, (target.offsetHeight * state.scale - viewport.clientHeight) / 2);
     state.x = clamp(state.x, -overflowX, overflowX);
     state.y = clamp(state.y, -overflowY, overflowY);
+  }
+
+  function canZoomIn() { return state.scale < maxScale - 0.001; }
+  function canZoomOut() { return state.scale > minScale + 0.001; }
+  function canPan() {
+    return target.offsetWidth * state.scale > viewport.clientWidth + 1 ||
+      target.offsetHeight * state.scale > viewport.clientHeight + 1;
   }
 
   function zoomBy(delta) {
@@ -88,7 +99,7 @@ export function createPanZoom(viewport, target, options = {}) {
     zoomBy,
     panBy,
     reset,
-    getState: () => ({ ...state }),
+    getState: () => ({ ...state, canZoomIn: canZoomIn(), canZoomOut: canZoomOut(), canPan: canPan() }),
     destroy() {
       viewport.removeEventListener("pointerdown", onPointerDown);
       viewport.removeEventListener("pointermove", onPointerMove);
