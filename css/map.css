@@ -1,27 +1,235 @@
-.layer-toggles {
-  border: 1px solid var(--rule); padding: var(--space-2xs) var(--space-s);
-  font-family: var(--font-sans); font-size: var(--size-step--1);
-  display: flex; flex-wrap: wrap; gap: var(--space-s); align-items: center;
-  margin-block-end: var(--space-s);
+/* ---- The map as a catalogue plate ---------------------------------------
+   The sheet itself is ink on paper, matted onto the dark plate ground. A
+   scholarly map plate is an engraving, not a night sky: hairline terrain reads
+   as inked line on paper and as glow on a dark ground, and the vermilion nodes
+   fail AA against --plate while passing comfortably against --paper-raised. */
+
+.map-plate {
+  /* Tighter gutters than .plate's default padding: at 360px that padding is
+     subtracted from the drawing width twice and the sheet gets very small. */
+  padding-inline: clamp(var(--space-2xs), 3vw, var(--space-l));
+  padding-block: clamp(var(--space-s), 3vw, var(--space-l));
+  display: grid;
+  gap: var(--space-s);
 }
-.layer-toggles legend { padding-inline: var(--space-2xs); }
-.layer-toggle { display: inline-flex; align-items: center; gap: var(--space-3xs); }
+
+.plate-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--size-step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--plate-muted);
+  border-block-end: 1px solid var(--plate-edge);
+  padding-block-end: var(--space-2xs);
+}
+
+/* ---- Layer toggles ---- */
+
+.layer-toggles {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--size-step--1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs) var(--space-m);
+  align-items: baseline;
+}
+.layer-toggles legend {
+  padding: 0;
+  margin-block-end: var(--space-2xs);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--plate-muted);
+}
+
+.layer-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3xs);
+  color: var(--plate-ink);
+  letter-spacing: 0.03em;
+  cursor: pointer;
+}
+
+.layer-toggle input {
+  appearance: none;
+  inline-size: 1.05em;
+  block-size: 1.05em;
+  margin: 0;
+  flex: none;
+  border: 1px solid var(--plate-muted);
+  background: var(--plate);
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+.layer-toggle input::before {
+  content: "";
+  inline-size: 0.68em;
+  block-size: 0.68em;
+  background: var(--ornament);
+  transform: scale(0);
+  transition: transform 140ms ease;
+  clip-path: polygon(14% 44%, 0 58%, 40% 100%, 100% 16%, 86% 2%, 38% 70%);
+}
+.layer-toggle input:checked::before { transform: scale(1); }
+.layer-toggle:hover input { border-color: var(--plate-ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .layer-toggle input::before { transition: none; }
+}
+
+/* ---- The sheet ---- */
 
 .route-map {
-  width: 100%; height: auto; background: var(--paper-raised);
-  border: 1px solid var(--rule);
+  width: 100%;
+  height: auto;
+  background: var(--paper-raised);
 }
-.edge { stroke: var(--rule); stroke-width: 2; }
-.node-dot { fill: var(--accent); }
-.node-label {
-  fill: var(--ink); font-family: var(--font-sans); font-size: 18px;
+
+/* The engraver's platemark: a second line just inside the mat. Stroked without
+   scaling so it stays a hairline at every rendered width. */
+.plate-mark { fill: none; stroke: var(--rule); stroke-width: 1; }
+
+/* ---- Terrain: a quiet base layer, never competing with the nodes ---- */
+
+.sea { fill: var(--accent-3); opacity: 0.08; }
+.coastline { fill: none; stroke: var(--accent-3); stroke-width: 1.6; opacity: 0.5; }
+.river {
+  fill: none; stroke: var(--accent-3); stroke-width: 2.2; opacity: 0.55;
+  stroke-linecap: round;
 }
+.desert { fill: var(--accent-2); opacity: 0.09; }
+.sand { opacity: 0.5; }
+.sand-grain { fill: var(--accent-2); }
+/* stroke-opacity rather than opacity: the fill has to stay opaque so a peak
+   hides the row of peaks behind it. */
+.range {
+  fill: var(--paper-raised); stroke: var(--muted); stroke-width: 1.5;
+  stroke-opacity: 0.6; stroke-linejoin: round; stroke-linecap: round;
+}
+.range-far { stroke-opacity: 0.4; stroke-width: 1.2; }
+
+.terrain-label, .river-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  fill: var(--muted);
+}
+.terrain-label { font-size: 16px; letter-spacing: 0.16em; }
+.river-label { font-size: 13.5px; letter-spacing: 0.1em; }
+
+/* ---- Chang'an's plan ---- */
+
+.city-fill { fill: var(--paper-raised); }
+.city-wall { fill: none; stroke: var(--ink); stroke-width: 2.2; }
+.city-wall-inner { fill: none; stroke: var(--ink); stroke-width: 0.8; opacity: 0.7; }
+.city-wards { fill: none; stroke: var(--rule); stroke-width: 0.7; }
+.city-avenue { fill: none; stroke: var(--muted); stroke-width: 1.3; opacity: 0.8; }
+.city-palace {
+  fill: var(--accent-2); fill-opacity: 0.35;
+  stroke: var(--muted); stroke-width: 0.9;
+}
+.city-market {
+  fill: var(--accent); fill-opacity: 0.4;
+  stroke: var(--accent); stroke-width: 1;
+}
+
+/* ---- Routes ---- */
+
+/* Two strokes per edge: a paper-coloured casing that cuts the track out of the
+   terrain beneath it, then the inked track itself. */
+.edge-casing { stroke: var(--paper-raised); stroke-width: 7.5; stroke-linecap: round; }
+.edge { stroke: var(--muted); stroke-width: 2.4; stroke-linecap: round; }
+
+@media (prefers-reduced-motion: no-preference) {
+  /* pathLength="100" on each line normalises the dash length, so every route
+     inks in over the same duration regardless of how long it is. */
+  .edge-casing, .edge {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    animation: ink-track 900ms ease forwards;
+  }
+}
+@keyframes ink-track { to { stroke-dashoffset: 0; } }
+
+/* ---- Nodes ---- */
+
 .node { cursor: pointer; }
 .node:focus-visible { outline: 3px solid var(--accent-3); outline-offset: 2px; }
 .node.is-dimmed { opacity: 0.25; pointer-events: none; }
 
-.map-note {
-  font-family: var(--font-sans); font-size: var(--size-step--1);
-  color: var(--muted); margin-block: var(--space-2xs) var(--space-s);
+.node-dot { fill: var(--accent); }
+/* An open circle is the lesser place, a ringed disc the greater one. */
+.node-dot-open { fill: var(--paper-raised); stroke: var(--accent); stroke-width: 2.2; }
+.node-ring { fill: none; stroke: var(--accent); stroke-width: 1.2; opacity: 0.75; }
+
+.node:hover :where(.node-dot, .node-dot-open) { fill: var(--accent-3); }
+.node:focus-visible :where(.node-dot, .node-dot-open) { fill: var(--accent-3); }
+.node:hover .node-ring, .node:focus-visible .node-ring {
+  stroke: var(--accent-3); opacity: 1;
 }
-.node-detail { margin-block-end: var(--space-l); }
+.node.is-selected .node-ring { opacity: 1; stroke-width: 2.2; }
+
+.node-label {
+  fill: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  /* A paper halo behind the glyphs so a label stays legible where it crosses
+     terrain. paint-order puts the stroke under the fill instead of over it. */
+  paint-order: stroke;
+  stroke: var(--paper-raised);
+  stroke-width: 4.5px;
+  stroke-linejoin: round;
+}
+.node-label.tier-capital {
+  font-size: 21px; font-weight: 600;
+  letter-spacing: 0.16em; text-transform: uppercase;
+}
+.node-label.tier-major { font-size: 19px; font-weight: 600; letter-spacing: 0.02em; }
+.node-label.tier-minor { font-size: 15.5px; font-style: italic; }
+.node-index { fill: var(--muted); font-size: 0.74em; letter-spacing: 0; }
+
+/* Scale-dependent detail. Below this width the sheet is roughly 300px across,
+   at which the ward grid is a grey smear and any label small enough to fit is
+   unreadable. The numerals survive alone, and the list of places below the
+   plate is their key. */
+@media (max-width: 40rem) {
+  .node-name, .city-wards, .terrain-label, .river-label { display: none; }
+  .node-label .node-index { font-size: 40px; fill: var(--ink); }
+}
+
+/* ---- Caption, panel, key ---- */
+
+.map-note { display: grid; gap: var(--space-2xs); }
+.map-note p { max-width: var(--measure); }
+
+.node-detail { margin-block: var(--space-m) var(--space-l); }
+.panel-eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--size-step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+}
+.node-detail h3 { margin-block-end: var(--space-2xs); }
+.panel-link {
+  font-family: var(--font-sans);
+  font-size: var(--size-step--1);
+  letter-spacing: 0.04em;
+  margin-block-start: var(--space-2xs);
+}
+
+.map-divider { margin-block: var(--space-l) var(--space-m); }
+.map-key-heading { margin-block-end: var(--space-2xs); }
+
+.map-key { margin-block-end: var(--space-xl); }
+.map-key dt { display: flex; gap: var(--space-2xs); align-items: baseline; }
+.key-index {
+  font-family: var(--font-sans);
+  font-size: var(--size-step--1);
+  font-weight: 400;
+  color: var(--muted);
+  min-inline-size: 1.4em;
+}
