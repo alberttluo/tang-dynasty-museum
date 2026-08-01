@@ -1,46 +1,269 @@
-.poem { padding-block: var(--space-xl); border-block-end: 1px solid var(--rule); }
-.poem h2 { font-size: var(--size-step-2); }
+/* ---- Overture -----------------------------------------------------------
+   This room has no photographs, so the opening carries itself on type alone:
+   the title at display size, the poets set as a colophon, a fret rule closing
+   the block. */
+
+.poetry-overture { padding-block: var(--space-l) var(--space-xl); }
+
+.overture-eyebrow {
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted);
+  margin-block-start: var(--space-l);
+}
+
+.poetry-title {
+  font-size: var(--size-step-4); line-height: 0.88; letter-spacing: -0.02em;
+  margin-block-start: var(--space-2xs);
+}
+
+.overture-standfirst {
+  font-size: var(--size-step-1); font-style: italic; color: var(--muted);
+  max-width: 36ch; margin-block-start: var(--space-m);
+}
+
+.overture-poets {
+  display: flex; flex-wrap: wrap; gap: var(--space-2xs) var(--space-l);
+  list-style: none; padding: 0; margin-block-start: var(--space-m);
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  color: var(--muted);
+}
+.overture-poets li { display: flex; align-items: baseline; gap: var(--space-2xs); }
+.poet-han {
+  font-family: var(--font-serif); font-size: var(--size-step-1);
+  letter-spacing: 0.08em; color: var(--ink);
+}
+
+.overture-rule { margin-block: var(--space-l); }
+.overture-prose { margin-block-end: var(--space-m); }
+
+/* ---- How the form is built ----------------------------------------------
+   A count and a shape, drawn as a CSS grid rather than SVG so every label is
+   real text at a real size and the two panels can reflow past each other on a
+   narrow screen. */
+
+.form-section {
+  padding-block: var(--space-xl); border-block-start: 1px solid var(--rule);
+}
+.section-heading { font-size: var(--size-step-2); }
+.form-section .prose { margin-block-start: var(--space-s); }
+
+.form-figure { margin-block-start: var(--space-l); }
+.form-diagram {
+  display: grid; align-items: start; gap: var(--space-m);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+}
+
+.form-panel {
+  background: var(--paper-raised); border: 1px solid var(--rule);
+  padding: var(--space-m) var(--space-s);
+}
+.form-panel-title { font-size: var(--size-step-1); }
+.form-panel-title span { color: var(--muted); letter-spacing: 0.08em; }
+.form-panel-note {
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  color: var(--muted); max-width: 42ch;
+  margin-block: var(--space-2xs) var(--space-m);
+}
+
+.form-couplet {
+  display: grid; gap: var(--space-3xs);
+  border-inline-start: 2px solid var(--ornament);
+  padding-inline-start: var(--space-2xs);
+}
+.form-couplet + .form-couplet { margin-block-start: var(--space-s); }
+.form-couplet-label {
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  color: var(--muted); margin-block-end: var(--space-3xs);
+}
+.form-couplet-label span { color: var(--ink); letter-spacing: 0.08em; }
+.form-couplet-label em { font-style: normal; color: var(--accent); }
+
+.form-line { display: flex; align-items: center; gap: var(--space-2xs); }
+.form-cells { display: flex; gap: 0.22rem; }
+.form-cell {
+  width: clamp(0.6rem, 2.2vw, 0.95rem); aspect-ratio: 1;
+  background: var(--ornament); opacity: 0.35;
+}
+.form-cell[data-strict] { opacity: 1; }
+
+.form-rhyme {
+  display: flex; align-items: center; gap: var(--space-3xs);
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  color: var(--muted);
+}
+.form-rhyme-mark { width: 0.7rem; }
+
+.form-caption {
+  max-width: var(--measure); margin-block-start: var(--space-m);
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  color: var(--muted);
+}
+
+/* ---- Catalogue entry ----------------------------------------------------
+   The entry text sits on paper and the poem itself is matted onto a plate, on
+   the same logic the object rooms use: prose is page, the presented thing is
+   in the vitrine. Here the presented thing is the setting of the type. */
+
+.poem {
+  --poem-gap: clamp(0.2rem, 1.2vw, 0.5rem);
+  --poem-char-max: clamp(2rem, 1.2rem + 3vw, 3.25rem);
+  padding-block: var(--space-xl);
+  border-block-start: 1px solid var(--rule);
+}
+.poem:first-of-type { border-block-start: 0; }
+
+.poem-title { font-size: var(--size-step-3); letter-spacing: 0.12em; line-height: 1.1; }
+.poem-title-gloss {
+  font-size: var(--size-step-1); font-style: italic; color: var(--muted);
+  margin-block-start: var(--space-3xs);
+}
 .poem-meta {
   font-family: var(--font-sans); font-size: var(--size-step--1);
-  color: var(--muted); margin-block: var(--space-3xs) var(--space-s);
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted);
+  margin-block: var(--space-2xs) var(--space-m);
+}
+.poem-context { margin-block-end: var(--space-l); }
+
+.poem-plate { max-width: 46rem; display: grid; gap: var(--space-l); }
+
+/* ---- The setting -------------------------------------------------------
+   Every line is its own grid with the same fractional column template, so the
+   columns register exactly down the whole poem without needing subgrid, and
+   the block can never be wider than the plate around it. Couplets are grouped
+   by nothing more than a tighter row gap inside them than between them. */
+
+.poem-grid {
+  container-type: inline-size;
+  display: grid; row-gap: var(--space-m);
+  width: 100%; max-width: calc(var(--poem-columns, 5) * 5.2rem);
+  margin-inline: auto;
+}
+.poem-couplet { display: grid; row-gap: var(--poem-gap); }
+.poem-line {
+  display: grid;
+  grid-template-columns: repeat(var(--poem-columns, 5), minmax(0, 1fr));
+  gap: var(--space-3xs) var(--poem-gap);
 }
 
-.poem-toggles { display: flex; gap: var(--space-2xs); margin-block: var(--space-s); }
-.poem-toggle {
-  font-family: var(--font-sans); font-size: var(--size-step--1);
-  padding: var(--space-3xs) var(--space-2xs);
-  background: var(--paper-raised); border: 1px solid var(--rule); cursor: pointer;
-}
-.poem-toggle[aria-pressed="true"] { background: var(--accent); color: var(--paper); }
-
-.poem-line { display: flex; gap: var(--space-2xs); }
 .poem-char {
-  font-family: var(--font-serif); font-size: var(--size-step-2);
-  background: transparent; border: 1px solid transparent; cursor: help;
-  padding: var(--space-3xs); line-height: 1.2;
+  display: grid; place-items: center;
+  min-width: 0; aspect-ratio: 1; padding: 0; border: 0;
+  font-family: var(--font-serif); line-height: 1;
+  color: var(--plate-ink); background: var(--plate-mat);
+  cursor: help;
+  transition: background-color 180ms ease;
+  /* Fallback for the line below, which needs container query units. */
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  /* Character size comes from the measured cell, not the viewport: a five- and
+     a seven-character line each fill their column at whatever width the plate
+     happens to be, with no media query and no chance of overflow. --poem-cell
+     is set per poem by js/poem.js, which is the only place the column count is
+     known. */
+  font-size: min(var(--poem-char-max), calc(var(--poem-cell, 4rem) * 0.62));
 }
-.poem-char:hover, .poem-char:focus-visible { border-color: var(--accent); }
+.poem-char:hover,
+.poem-char:focus-visible,
+.poem-char.is-glossed { background: var(--plate-edge); }
 
-/* Tone marks are hidden until the toggle is pressed, and never occupy space
-   when hidden, so the poem's own spacing is unaffected. */
-.tone-marks { display: none; gap: var(--space-2xs); }
-.poem.show-tones .tone-marks { display: flex; }
+/* Tone marks occupy a second row of each line's grid, so they land in exact
+   register under the character each one belongs to. Hidden they are display:
+   none and take no space, so the poem's spacing never depends on the toggle. */
+.tone-mark-cell { display: none; place-items: center; }
+.poem.show-tones .tone-mark-cell { display: grid; }
+
 .tone-mark {
-  width: calc(var(--size-step-2) + var(--space-2xs));
-  text-align: center; color: var(--accent-3); font-family: var(--font-sans);
+  flex: none; width: 0.7rem; aspect-ratio: 1; border-radius: 50%;
+  color: var(--plate-ink);
 }
+.tone-mark[data-tone="level"] { border: 2px solid currentColor; }
+.tone-mark[data-tone="oblique"] { background: currentColor; }
+
+/* ---- Gloss -------------------------------------------------------------- */
 
 .poem-gloss {
-  min-height: 4.5rem; margin-block: var(--space-s);
-  padding: var(--space-2xs) var(--space-s);
-  background: var(--paper-raised); border-inline-start: 3px solid var(--accent-3);
-  display: flex; flex-wrap: wrap; gap: var(--space-s); align-items: baseline;
+  min-height: 5rem; padding: var(--space-2xs) var(--space-s);
+  background: var(--plate-mat); border-inline-start: 3px solid var(--ornament);
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  gap: var(--space-2xs) var(--space-s);
   font-family: var(--font-sans); font-size: var(--size-step--1);
+  color: var(--plate-ink);
 }
-.gloss-char { font-family: var(--font-serif); font-size: var(--size-step-1); }
+.gloss-char {
+  font-family: var(--font-serif); font-size: var(--size-step-2); line-height: 1;
+}
+.gloss-pinyin { font-style: italic; color: var(--plate-muted); }
 .gloss-sense { font-size: var(--size-step-0); }
-.gloss-tone { color: var(--muted); }
+.gloss-tone {
+  display: flex; align-items: center; gap: var(--space-3xs);
+  color: var(--plate-muted);
+}
+.gloss-tone .tone-mark { color: var(--plate-muted); }
+.gloss-hint { font-style: italic; color: var(--plate-muted); }
 
-.poem-translation { max-width: var(--measure); font-style: italic; }
+/* ---- Apparatus --------------------------------------------------------- */
 
-.gloss-hint { color: var(--muted); font-style: italic; }
+.poem-apparatus { display: flex; flex-wrap: wrap; gap: var(--space-2xs); }
+.poem-toggle {
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  letter-spacing: 0.06em;
+  padding: var(--space-3xs) var(--space-xs);
+  color: var(--plate-ink); background: transparent;
+  border: 1px solid var(--plate-edge); cursor: pointer;
+}
+.poem-toggle:hover { border-color: var(--plate-muted); }
+.poem-toggle[aria-pressed="true"] {
+  color: var(--plate); background: var(--plate-ink); border-color: var(--plate-ink);
+}
+
+/* ---- Tone lattice -----------------------------------------------------
+   The whole poem's ping/ze pattern in one figure. Rings and dots because that
+   is how prosody handbooks mark the two categories -- a notation that says
+   which class a syllable belonged to and nothing about its pitch. */
+
+.tone-lattice { display: none; }
+.poem.show-tones .tone-lattice {
+  display: grid; justify-items: start; gap: var(--space-s);
+}
+.tone-lattice svg {
+  width: 100%; max-width: calc(var(--poem-columns, 5) * 5.2rem); height: auto;
+  color: var(--plate-ink);
+}
+.tone-lattice figcaption {
+  max-width: var(--measure);
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  color: var(--plate-muted);
+}
+
+.lattice-band { fill: var(--plate-edge); }
+.lattice-ring { fill: none; stroke: currentColor; stroke-width: 1.8; }
+.lattice-disc { fill: currentColor; }
+.lattice-rung { stroke: var(--plate-ink); stroke-width: 2.4; }
+.lattice-bracket { fill: none; stroke: var(--plate-muted); stroke-width: 1.2; }
+.lattice-label {
+  fill: var(--plate-muted); font-family: var(--font-sans); font-size: 10px;
+}
+.lattice-label.is-strict { fill: var(--plate-ink); font-weight: 600; }
+
+.tone-legend {
+  display: flex; flex-wrap: wrap; gap: var(--space-s);
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  color: var(--plate-muted);
+}
+.tone-legend span { display: flex; align-items: center; gap: var(--space-3xs); }
+.tone-legend .tone-mark { color: var(--plate-muted); }
+
+/* ---- Translation ------------------------------------------------------- */
+
+.poem-translation-label {
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--plate-muted);
+  margin-block-end: var(--space-2xs);
+}
+.poem-translation {
+  max-width: var(--measure); font-size: var(--size-step-1); font-style: italic;
+  line-height: 1.5; color: var(--plate-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .poem-char { transition: none; }
+}
