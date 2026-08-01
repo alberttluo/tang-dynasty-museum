@@ -1,34 +1,167 @@
-.room-header { padding-block: var(--space-l) var(--space-m); }
+/* ---- Room opening ------------------------------------------------------- */
+
+.room-header { padding-block: var(--space-l) var(--space-l); }
 .room-header .back { font-family: var(--font-sans); font-size: var(--size-step--1); }
 
-.object { padding-block: var(--space-xl); border-block-end: 1px solid var(--rule); }
+.room-mark { width: 1.75rem; margin-block: var(--space-l) var(--space-xs); }
+
+.room-kicker {
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+.room-header h1 {
+  font-size: var(--size-step-4);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  max-width: 16ch;
+  margin-block-start: var(--space-2xs);
+}
+
+.room-rule { margin-block: var(--space-m); }
+
+.room-lede > p:first-child {
+  font-size: var(--size-step-1);
+  line-height: 1.45;
+}
+
+/* ---- Objects ------------------------------------------------------------ */
+
+#objects { counter-reset: plate; }
+
+.object {
+  counter-increment: plate;
+  padding-block: var(--space-xl);
+  border-block-end: 1px solid var(--rule);
+}
+
+.object figcaption h2::before {
+  content: "Plate " counter(plate);
+  display: block;
+  font-family: var(--font-sans);
+  font-size: var(--size-step--1);
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-block-end: var(--space-3xs);
+}
+
 .object-meta {
   font-family: var(--font-sans); font-size: var(--size-step--1);
   color: var(--muted); margin-block: var(--space-3xs) var(--space-s);
 }
 
+.object-plate { margin-block: var(--space-m); }
+
+/* ---- Detail panel ------------------------------------------------------- */
+
 .detail-panel {
   border: 1px solid var(--rule);
   border-block-start: 3px solid var(--accent);
   background: var(--paper-raised);
-  padding: var(--space-s);
-  margin-block-start: var(--space-2xs);
+  padding: var(--space-m);
+  margin-block-start: var(--space-s);
   max-width: var(--measure);
+  box-shadow: 0 0.75rem 1.5rem -1rem rgb(0 0 0 / 0.3);
 }
 .detail-panel[hidden] { display: none; }
 
+.detail-panel h3::before {
+  content: "Detail";
+  display: block;
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted);
+  margin-block-end: var(--space-3xs);
+}
+.detail-panel > p { margin-block-start: var(--space-2xs); max-width: var(--measure); }
+
 .panel-close {
   font-family: var(--font-sans); font-size: var(--size-step--1);
-  padding: var(--space-3xs) var(--space-2xs);
-  background: var(--paper-raised); color: var(--ink);
+  letter-spacing: 0.1em; text-transform: uppercase;
+  margin-block-start: var(--space-s);
+  padding: var(--space-2xs) var(--space-s);
+  background: transparent; color: var(--ink);
   border: 1px solid var(--rule); cursor: pointer;
 }
+.panel-close:hover { background: var(--paper); border-color: var(--muted); }
+
+/* ---- Details in text ---------------------------------------------------- */
 
 .hotspot-list {
+  counter-reset: detail;
   margin-block-start: var(--space-2xs);
   max-width: var(--measure);
 }
 .hotspot-list dt {
+  counter-increment: detail;
   font-weight: 600;
+  margin-block-start: var(--space-m);
+}
+/* The numbering matches the badge on each hotspot marker, so a reader can move
+   between the photograph and this list without re-reading the labels. */
+.hotspot-list dt::before {
+  content: counter(detail);
+  font-family: var(--font-sans); font-size: var(--size-step--1);
+  font-weight: 700;
+  color: var(--accent);
+  margin-inline-end: var(--space-2xs);
+}
+.hotspot-list dd { margin-block-start: var(--space-3xs); }
+
+/* ---- Sancai glaze diagram ----------------------------------------------- */
+
+.glaze { padding-block: var(--space-l) var(--space-xl); }
+.glaze h2 { margin-block: var(--space-m) var(--space-s); max-width: 22ch; }
+
+.glaze-panels {
+  display: grid;
+  gap: var(--space-m);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  margin-block: var(--space-l);
+}
+
+.glaze-panel {
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  padding: var(--space-s);
+}
+.glaze-panel svg { width: 100%; height: auto; }
+.glaze-panel figcaption {
+  font-size: var(--size-step--1);
   margin-block-start: var(--space-2xs);
 }
+
+/* Staggered so the three states read as a sequence rather than one flash. */
+.glaze-panel:nth-child(2) { transition-delay: 160ms; }
+.glaze-panel:nth-child(3) { transition-delay: 320ms; }
+
+.glaze-body {
+  fill: color-mix(in srgb, var(--muted) 20%, var(--paper-raised));
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.glaze-coat {
+  fill: var(--accent-2);
+  stroke: color-mix(in srgb, var(--accent-2) 55%, var(--ink));
+  stroke-width: 1;
+}
+.glaze-pool { fill: color-mix(in srgb, var(--accent-2) 55%, var(--ink)); }
+.glaze-leader { fill: none; stroke: var(--muted); stroke-width: 1; }
+.glaze-arrow { fill: var(--muted); stroke: var(--muted); stroke-width: 2; }
+
+.glaze-panel text {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  fill: var(--muted);
+}
+.glaze-panel text.glaze-step {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  fill: var(--ink);
+}
+
+.glaze-note { font-family: var(--font-sans); font-size: var(--size-step--1); }

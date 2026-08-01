@@ -1,14 +1,25 @@
-.zoom-controls { display: flex; gap: var(--space-2xs); margin-block-end: var(--space-2xs); }
+/* The zoom viewport and its controls sit on a .plate, so every colour here is
+   from the plate register rather than the paper register. */
+
+.zoom-controls {
+  display: flex; flex-wrap: wrap; gap: var(--space-2xs);
+  margin-block-end: var(--space-s);
+}
 .zoom-controls button {
   font-family: var(--font-sans); font-size: var(--size-step--1);
-  padding: var(--space-3xs) var(--space-2xs);
-  background: var(--paper-raised); color: var(--ink);
-  border: 1px solid var(--rule); cursor: pointer;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: var(--space-2xs) var(--space-s);
+  background: transparent; color: var(--plate-ink);
+  border: 1px solid var(--plate-edge); cursor: pointer;
+  transition: background-color 160ms ease, border-color 160ms ease;
+}
+.zoom-controls button:hover {
+  background: var(--plate-mat);
+  border-color: var(--plate-muted);
 }
 
 .zoom-viewport {
   position: relative; overflow: hidden;
-  background: var(--paper-raised); border: 1px solid var(--rule);
   touch-action: none; cursor: grab;
   max-height: 80vh;
 }
@@ -17,15 +28,35 @@
 .zoom-stage { position: relative; transform-origin: center center; }
 .zoom-stage img { width: 100%; height: auto; }
 
+/* A hollow double-stroked ring: light stroke against dark passages of the
+   photograph, dark stroke against light ones, and an open centre so the marker
+   frames the detail it points at instead of covering it. */
 .hotspot {
   position: absolute; translate: -50% -50%;
-  width: 2rem; height: 2rem; border-radius: 50%;
-  background: color-mix(in srgb, var(--accent) 70%, transparent);
-  border: 2px solid var(--paper-raised);
+  width: 2.25rem; height: 2.25rem; border-radius: 50%;
+  padding: 0;
+  background: transparent;
+  border: 2px solid rgb(255 255 255 / 0.92);
+  box-shadow: 0 0 0 2px rgb(0 0 0 / 0.6), inset 0 0 0 2px rgb(0 0 0 / 0.5);
   cursor: pointer;
+  transition: background-color 160ms ease;
 }
-.hotspot:hover { background: var(--accent); }
+.hotspot:hover { background: color-mix(in srgb, var(--accent) 45%, transparent); }
+
+.hotspot-index {
+  position: absolute;
+  inset-block-start: -0.6rem; inset-inline-start: -0.6rem;
+  min-width: 1.3rem; height: 1.3rem; border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: var(--font-sans); font-size: 0.72rem; font-weight: 700;
+  line-height: 1;
+  background: var(--accent); color: #fff;
+  border: 1px solid rgb(255 255 255 / 0.85);
+}
+
+.plate-caption { margin-block-start: var(--space-s); }
 
 @media (prefers-reduced-motion: reduce) {
   .zoom-stage { transition: none !important; }
+  .zoom-controls button, .hotspot { transition: none; }
 }

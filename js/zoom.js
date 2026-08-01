@@ -1,5 +1,6 @@
 import { el, qs } from "./lib/dom.js";
 import { loadRecords, renderFailure, DataLoadError } from "./lib/data.js";
+import { revealOnEnter } from "./lib/reveal.js";
 
 export function checkObject(record) {
   const problems = [];
@@ -44,15 +45,19 @@ function closePanel(panel) {
   panel.replaceChildren();
 }
 
-function renderObject(record, panzoomFactory) {
-  const figure = el("figure", { class: "object", id: record.id });
+function renderObject(record, panzoomFactory, position) {
+  const figure = el("figure", { class: "object reveal", id: record.id });
 
-  const viewport = el("div", { class: "zoom-viewport" });
+  const viewport = el("div", { class: "zoom-viewport plate-frame" });
   const stage = el("div", { class: "zoom-stage" });
   const image = el("img", {
     src: record.image.src,
     alt: `${record.title}. ${record.summary ?? ""}`,
     style: `aspect-ratio: ${record.image.aspect ?? "1/1"}`,
+    decoding: "async",
+    // Only the first object in a room is above the fold; the rest are large
+    // museum files worth deferring until the reader scrolls to them.
+    loading: position === 0 ? "eager" : "lazy",
   });
 
   const panel = el("div", { class: "detail-panel", role: "region",
@@ -68,14 +73,31 @@ function renderObject(record, panzoomFactory) {
         style: `left: ${hotspot.x * 100}%; top: ${hotspot.y * 100}%`,
         "aria-label": `Detail ${index + 1}: ${hotspot.label}`,
         onclick: () => renderPanel(panel, hotspot),
-      })
+      }, [
+        el("span", { class: "hotspot-index", "aria-hidden": "true",
+          text: String(index + 1) }),
+      ])
     );
   });
 
   viewport.append(stage);
 
   const controls = el("div", { class: "zoom-controls" });
-  const pz = panzoomFactory(viewport, stage);
+  let pz = panzoomFactory(viewport, stage);
+
+  // Past 1:1 there is no more detail in the file, only interpolation, so the
+  // ceiling is the image's own resolution. It is only knowable once the file
+  // has loaded, and the controller takes its limits at construction, so the
+  // controller is rebuilt then. Every caller reads `pz` through a closure, so
+  // the swap is invisible to them.
+  image.addEventListener("load", () => {
+    if (!image.naturalWidth || !image.clientWidth) return;
+    pz.destroy();
+    pz = panzoomFactory(viewport, stage, {
+      maxScale: Math.max(1, image.naturalWidth / image.clientWidth),
+    });
+  });
+
   controls.append(
     el("button", { type: "button", text: "Zoom in",
       onclick: () => pz.zoomBy(0.25) }),
@@ -83,6 +105,15 @@ function renderObject(record, panzoomFactory) {
       onclick: () => pz.zoomBy(-0.25) }),
     el("button", { type: "button", text: "Reset view", onclick: () => pz.reset() })
   );
+
+  // The museum photographs carry their studio backgrounds unaltered, so the
+  // viewport is matted onto a dark plate rather than sitting on the paper.
+  const plate = el("div", { class: "object-plate plate" }, [
+    controls,
+    viewport,
+    el("p", { class: "plate-caption",
+      text: "Drag to pan. Arrow keys pan, plus and minus zoom, Esc resets the view. Numbered rings mark the annotated details." }),
+  ]);
 
   viewport.setAttribute("tabindex", "0");
   viewport.setAttribute("role", "group");
@@ -120,8 +151,7 @@ function renderObject(record, panzoomFactory) {
         text: `${record.date ?? ""} · ${record.museum?.name ?? ""} · ${record.museum?.accession ?? ""} · ${record.museum?.license ?? ""}` }),
       el("p", { class: "prose", text: record.summary ?? "" }),
     ]),
-    controls,
-    viewport,
+    plate,
     panel,
     el("h3", { text: "Details in text" }),
     list
@@ -152,7 +182,10 @@ export async function initZoomRoom({ container, room, dataUrl }) {
     return;
   }
 
-  container.replaceChildren(...objects.map((record) => renderObject(record, createPanZoom)));
+  container.replaceChildren(
+    ...objects.map((record, position) => renderObject(record, createPanZoom, position))
+  );
+  revealOnEnter(container);
 
   if (result.skipped.length > 0) {
     container.append(

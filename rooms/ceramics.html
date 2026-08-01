@@ -13,15 +13,93 @@
 
 <header class="wrap room-header">
   <p class="back"><a href="../index.html">← Back to the timeline</a></p>
+  <span class="ornament ornament-rosette room-mark" aria-hidden="true"></span>
+  <p class="room-kicker">Room two of four · annotated deep zoom</p>
   <h1>Ceramics</h1>
-  <p class="prose">Sancai — "three colours" — is a lead-fluxed glaze system that runs
-  during firing. The colours are not painted on so much as allowed to move, and the
-  finished surface is a record of what happened in the kiln. Zoom in and the technique
-  becomes legible.</p>
-  <p class="prose">The room runs from the polychrome tomb figures of the Xuanzong decades
-  to the monochrome celadons that followed the rebellion of 755, because that is the
-  order in which Tang potters changed their minds about what a fine pot was.</p>
+  <hr class="rule-fret room-rule">
+  <div class="prose room-lede">
+    <p>Sancai — "three colours" — is a lead-fluxed glaze system that runs
+    during firing. The colours are not painted on so much as allowed to move, and the
+    finished surface is a record of what happened in the kiln. Zoom in and the technique
+    becomes legible.</p>
+    <p>The room runs from the polychrome tomb figures of the Xuanzong decades
+    to the monochrome celadons that followed the rebellion of 755, because that is the
+    order in which Tang potters changed their minds about what a fine pot was.</p>
+  </div>
 </header>
+
+<section class="wrap glaze" aria-labelledby="glaze-heading">
+  <hr class="rule-fret">
+  <h2 id="glaze-heading">What the glaze does in the kiln</h2>
+  <p class="prose">Lead makes a sancai glaze melt at a low temperature and flow freely
+  while it is molten, and nothing holds it in place while it does. The three drawings
+  below cut through a pot wall at one raised throwing ridge and the hollow beneath it,
+  and follow the glaze from the moment it is laid on to the moment it cools.</p>
+
+  <div class="glaze-panels">
+
+    <figure class="glaze-panel reveal">
+      <svg viewBox="0 0 260 300" role="img" aria-labelledby="glaze-1-title">
+        <title id="glaze-1-title">Cross-section of a pot wall: an even coat of unfired
+        glaze lying over a raised ridge and the hollow below it.</title>
+        <text class="glaze-step" x="2" y="16">1 · Laid on</text>
+        <path class="glaze-body" d="M40,34 L100,34 L100,110 Q124,142 100,174 Q88,205 100,236 L100,285 L40,285 Z"/>
+        <path class="glaze-coat" d="M100,34 L112,34 L112,110 Q136,142 112,174 Q100,205 112,236 L112,285 L100,285 L100,236 Q88,205 100,174 Q124,142 100,110 Z"/>
+        <text x="46" y="62">clay body</text>
+        <path class="glaze-leader" d="M108,72 L140,66"/>
+        <text x="144" y="70">raw glaze</text>
+        <path class="glaze-leader" d="M132,142 L150,138"/>
+        <text x="154" y="142">ridge</text>
+        <path class="glaze-leader" d="M104,206 L150,212"/>
+        <text x="154" y="216">hollow</text>
+      </svg>
+      <figcaption>The glaze is laid on the raw pot in bands and sits where the potter
+      put it. Nothing has moved yet.</figcaption>
+    </figure>
+
+    <figure class="glaze-panel reveal">
+      <svg viewBox="0 0 260 300" role="img" aria-labelledby="glaze-2-title">
+        <title id="glaze-2-title">The same wall during firing: the glaze has melted,
+        thinned over the ridge, and begun to run downward.</title>
+        <text class="glaze-step" x="2" y="16">2 · In the kiln</text>
+        <path class="glaze-body" d="M40,34 L100,34 L100,110 Q124,142 100,174 Q88,205 100,236 L100,285 L40,285 Z"/>
+        <path class="glaze-coat" d="M100,34 L109,34 L109,110 Q130,142 106,176 Q98,206 116,238 L114,285 L100,285 L100,236 Q88,205 100,174 Q124,142 100,110 Z"/>
+        <path class="glaze-leader" d="M112,120 L140,112"/>
+        <text x="144" y="116">molten glaze</text>
+        <text x="176" y="84">gravity</text>
+        <path class="glaze-arrow" d="M200,96 L200,166"/>
+        <path class="glaze-arrow" d="M193,164 L207,164 L200,178 Z"/>
+      </svg>
+      <figcaption>The lead flux melts the glaze at a low temperature. Molten, it flows
+      freely, and for the length of the firing gravity is the only thing shaping it.</figcaption>
+    </figure>
+
+    <figure class="glaze-panel reveal">
+      <svg viewBox="0 0 260 300" role="img" aria-labelledby="glaze-3-title">
+        <title id="glaze-3-title">The same wall after cooling: the glaze is thin over
+        the crest of the ridge, pooled thick and dark in the hollow below it, and stops
+        short of the foot leaving bare clay.</title>
+        <text class="glaze-step" x="2" y="16">3 · Where it stopped</text>
+        <path class="glaze-body" d="M40,34 L100,34 L100,110 Q124,142 100,174 Q88,205 100,236 L100,285 L40,285 Z"/>
+        <path class="glaze-coat" d="M100,34 L110,34 L110,110 Q127,142 104,174 Q92,206 122,232 L118,252 L100,252 L100,236 Q88,205 100,174 Q124,142 100,110 Z"/>
+        <path class="glaze-pool" d="M104,178 Q92,206 122,232 L118,252 L100,252 L100,236 Q90,208 104,178 Z"/>
+        <path class="glaze-leader" d="M108,158 L146,140"/>
+        <text x="150" y="138">thin over<tspan x="150" dy="14">the ridge</tspan></text>
+        <path class="glaze-leader" d="M122,230 L150,240"/>
+        <text x="154" y="244">pooled thicker<tspan x="154" dy="14">and darker</tspan></text>
+        <path class="glaze-leader" d="M108,258 L120,272"/>
+        <text x="124" y="278">no glaze at the foot</text>
+      </svg>
+      <figcaption>It cools where gravity left it: thin over the crest, pooled thicker
+      and darker in the hollow. At the base the potter stopped the glaze short, because
+      a lead glaze reaching the bottom would have fused the pot to the kiln floor.</figcaption>
+    </figure>
+
+  </div>
+
+  <p class="prose glaze-note">Every stage drawn here is legible on one surface:
+  <a href="#sancai-ewer">see the sancai ewer below</a>, details 3 and 4.</p>
+</section>
 
 <main class="wrap" id="objects">
 <!-- BEGIN generated fallback: python3 tools/build_fallback.py -->
@@ -143,6 +221,10 @@
 
 <script type="module">
   import { initZoomRoom } from "../js/zoom.js";
+  import { revealOnEnter } from "../js/lib/reveal.js";
+
+  revealOnEnter(document.querySelector(".glaze-panels"));
+
   initZoomRoom({
     container: document.getElementById("objects"),
     room: "ceramics",
